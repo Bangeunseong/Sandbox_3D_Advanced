@@ -30,5 +30,19 @@ namespace Utils
             Debug.LogError($"{typeof(T)} is not found in {go.name} and parents of {go.name}!"); 
             return null;
         }
+
+        public static T FindObjectAndGetComponentInChildren_Helper<T>(this GameObject go, string name, bool includeInActive = false)
+            where T : Component
+        {
+            if(!go) { Debug.LogError("GameObject is null!"); return null; }
+
+            var components = go.GetComponentsInChildren<T>(includeInActive);
+            foreach (var component in components)
+            {
+                if (component.gameObject.name.Equals(name)) return component;
+            }
+            Debug.LogError($"{name} Object or {typeof(T)} in {name} is not found in {go.name} and children of {go.name}!");
+            return null;
+        }
     }
 }

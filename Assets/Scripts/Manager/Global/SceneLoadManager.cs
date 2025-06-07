@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,14 +8,13 @@ namespace Manager.Global
 {
     public class SceneLoadManager : MonoBehaviour
     {
-        private const string LoadingScene = "Loading";
-        private const string MainScene = "Main";
-
-        private string previousScene;
-        private string currentScene;
+        [Header("Scene Info.")]
+        [SerializeField] private string previousScene;
+        [SerializeField] private string currentScene;
         private AsyncOperation sceneLoad;
         private bool isInputAllowed = true;
         private bool isKeyPressed = false;
+        private UIManager uiManager;
 
         public static SceneLoadManager Instance { get; private set; }
         
@@ -25,8 +26,12 @@ namespace Manager.Global
 
         private void Start()
         {
-            currentScene = LoadingScene;
-            _ = OpenScene(MainScene);
+            uiManager = UIManager.Instance;
+            
+            uiManager.ChangeState(CurrentScene.Intro);
+            currentScene = nameof(CurrentScene.Intro);
+
+            StartCoroutine(StartMainScene());
         }
 
         private void Update()
@@ -44,7 +49,15 @@ namespace Manager.Global
                 await ResourceManager.Instance.UnloadSceneResources(previousScene);
                 currentScene = sceneName;
             }
-
+            
+            var loadingScene = SceneManager.LoadSceneAsync(nameof(CurrentScene.Loading));
+            while (!loadingScene!.isDone)
+            {
+                await Task.Yield();
+            }
+            
+            uiManager.ChangeState(CurrentScene.Loading);
+            
             Debug.Log("Resource and Scene Load Started!");
             await ResourceManager.Instance.LoadSceneResourcesWithProgress(currentScene);
             await LoadSceneWithProgress(currentScene);
@@ -56,18 +69,26 @@ namespace Manager.Global
             sceneLoad!.allowSceneActivation = false;
             while (sceneLoad.progress < 0.9f)
             {
+                uiManager.LoadingUI.UpdateLoadingProgress(sceneLoad.progress);
                 await Task.Yield();
             }
             
             // Wait for user input
             isInputAllowed = true;
-            Debug.Log("Press any key to continue...");
+            uiManager.LoadingUI.UpdateLoadingProgress(1f);
+            uiManager.LoadingUI.UpdateProgressText("Press any key to continue...");
             await WaitForUserInput();
             
             sceneLoad!.allowSceneActivation = true;
             while (sceneLoad is { isDone: false }) 
             {
                 await Task.Yield();
+            }
+
+            switch (sceneName)
+            { 
+                case nameof(CurrentScene.Intro): uiManager.ChangeState(CurrentScene.Intro); break;
+                case nameof(CurrentScene.Main): uiManager.ChangeState(CurrentScene.Main); break;
             }
         }
         
@@ -77,6 +98,12 @@ namespace Manager.Global
             {
                 await Task.Yield();
             }
+        }
+
+        private IEnumerator StartMainScene()
+        {
+            yield return new WaitForSeconds(2);
+            _ = OpenScene(nameof(CurrentScene.Main));
         }
     }
 }

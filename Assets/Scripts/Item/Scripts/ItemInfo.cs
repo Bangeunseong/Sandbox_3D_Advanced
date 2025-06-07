@@ -1,19 +1,27 @@
 ﻿using System;
+using AYellowpaper.SerializedCollections;
+using Character.Scripts.Data;
 using UnityEngine;
 
 namespace Item.Scripts
 {
-    public enum WeaponType
+    public enum SoftwareType
     {
         Sword,
     }
     
-    public enum ArmorType
+    public enum HardwareType
     {
-        Helmet,
-        ChestArmor,
-        Gauntlet,
-        Boots,
+        Cpu,
+        Ram,
+        Gpu,
+        Cooler,
+    }
+
+    public enum ItemType
+    {
+        Equipable,
+        Consumable,
     }
 
     public enum Rarity
@@ -29,19 +37,18 @@ namespace Item.Scripts
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public int Price { get; private set; }
         [field: SerializeField] public Rarity Rarity { get; private set; }
-        
+        [field: SerializeField] public ItemType ItemType { get; private set; }
+        [field: SerializeField] public SerializedDictionary<StatType, float> Values { get; private set; } = new();
         [field: SerializeField] public Sprite Icon { get; private set; }
     }
 
-    [Serializable] public class ArmorItemInfo : ItemInfo
+    [Serializable] public class HardwareItemInfo : ItemInfo
     {
-        [field: SerializeField] public float Defense { get; private set; }
-        [field: SerializeField] public ArmorType ArmorType { get; private set; }
+        [field: SerializeField] public HardwareType HardwareType { get; private set; }
     }
 
-    [Serializable] public class WeaponItemInfo : ItemInfo
+    [Serializable] public class SoftwareItemInfo : ItemInfo
     {
-        [field: SerializeField] public float Attack { get; private set; }
-        [field: SerializeField] public WeaponType WeaponType { get; private set; }
+        [field: SerializeField] public SoftwareType SoftwareType { get; private set; }
     }
 }

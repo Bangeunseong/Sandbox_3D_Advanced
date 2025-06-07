@@ -8,19 +8,25 @@ namespace Item.Scripts
     [CreateAssetMenu(fileName = "New ItemTable", menuName = "ScriptableObjects/Item/Table/Create New ItemTable", order = 0)]
     public class ItemTable : ScriptableObject
     {
+        [Header("Item Infos.")]
         [field: SerializeField] public List<ScriptableObject> items = new();
         [SerializeField] private SerializedDictionary<string, ScriptableObject> itemDictionary = new();
-
+        [field: SerializeField] public List<string> ItemKeys { get; private set; } = new();
+        
         private void OnEnable()
         {
-            foreach(var item in items) itemDictionary[item.name] = item;
+            foreach (var item in items)
+            {
+                ItemKeys.Add(item.name);
+                itemDictionary[item.name] = item;
+            }
         }
 
-        public ArmorItemData GetArmorItemByName(string itemName)
+        public HardwareItemData GetHardWareItemByName(string itemName)
         {
             if (itemDictionary.TryGetValue(itemName, out var item))
             {
-                if (item is ArmorItemData armorItem) return armorItem;
+                if (item is HardwareItemData hardwareItem) return hardwareItem;
                 Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
                 return null;
             }
@@ -28,11 +34,11 @@ namespace Item.Scripts
             return null;
         }
 
-        public WeaponItemData GetWeaponItemByName(string itemName)
+        public SoftwareItemData GetSoftWareItemByName(string itemName)
         {
             if (itemDictionary.TryGetValue(itemName, out var item))
             {
-                if (item is WeaponItemData weaponItem) return weaponItem;
+                if (item is SoftwareItemData softwareItem) return softwareItem;
                 Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
                 return null;
             }

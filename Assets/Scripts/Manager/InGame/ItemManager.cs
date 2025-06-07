@@ -2,19 +2,24 @@
 using Manager.Global;
 using UnityEngine;
 
-namespace Manager
+namespace Manager.InGame
 {
     public class ItemManager : MonoBehaviour
     {
-        [Header("Item Table")]
-        [SerializeField] private ItemTable itemTable;
+        [field: Header("ItemTable")]
+        [field: SerializeField] public ItemTable ItemTable { get; private set; }
+        
+        public static ItemManager Instance{get; private set;}
         
         private void Awake()
         {
-            if (!itemTable) itemTable = ResourceManager.Instance.GetResourceByName<ItemTable>("ItemTable");
+            if (!Instance) { Instance = this; }
+            else{ if (Instance != this) Destroy(gameObject); }
+            
+            if (!ItemTable) ItemTable = ResourceManager.Instance.GetResourceByName<ItemTable>("ItemTable");
         }
 
-        public ArmorItemData GetArmorItemDataByName(string name) => itemTable.GetArmorItemByName(name);
-        public WeaponItemData GetWeaponItemDataByName(string name) => itemTable.GetWeaponItemByName(name);
+        public HardwareItemData GetHardWareItemByName(string name) => ItemTable.GetHardWareItemByName(name);
+        public SoftwareItemData GetSoftWareItemByName(string name) => ItemTable.GetSoftWareItemByName(name);
     }
 }

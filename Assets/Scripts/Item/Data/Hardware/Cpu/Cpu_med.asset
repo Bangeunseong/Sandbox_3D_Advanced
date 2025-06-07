@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6021b85ee3f406bbf10f21b2f8dcba7, type: 3}
+  m_Name: Cpu_med
+  m_EditorClassIdentifier: 
+  <HardwareItemInfo>k__BackingField:
+    <ItemName>k__BackingField: 7800X3D
+    <Description>k__BackingField: "AMD\uC5D0\uC11C \uCD9C\uC2DC\uD55C Cpu\uC774\uB2E4.
+      8\uCF54\uC5B4 16\uC4F0\uB808\uB4DC\uB85C \uAD6C\uC131\uB418\uC5B4 \uC788\uC73C\uBA70
+      \uAC8C\uC784 \uBC0F \uC791\uC5C5 \uC131\uB2A5\uC774 \uBAA8\uB450 \uD2B9\uCD9C\uB098\uB2E4."
+    <Price>k__BackingField: 471800
+    <Rarity>k__BackingField: 1
+    <ItemType>k__BackingField: 0
+    <Values>k__BackingField:
+      _serializedList:
+      - Key: 2
+        Value: 60
+      - Key: 3
+        Value: 20
+      - Key: 1
+        Value: 150
+    <Icon>k__BackingField: {fileID: 21300000, guid: 097bcc6ac168b9640b9f2a2bef04bc24,
+      type: 3}
+    <HardwareType>k__BackingField: 0
+  <MaxStackCount>k__BackingField: 1
