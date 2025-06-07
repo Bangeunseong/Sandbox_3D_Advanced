@@ -13,13 +13,23 @@ MonoBehaviour:
   m_Name: Gpu_high
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
-    <ItemName>k__BackingField: 
-    <Description>k__BackingField: 
-    <Price>k__BackingField: 0
+    <ItemName>k__BackingField: RTX 5090
+    <Description>k__BackingField: "Nvidia\uC5D0\uC11C \uC81C\uC791\uD55C Gpu\uC774\uB2E4.
+      \uD604\uC874\uD558\uB294 Gpu \uC911 \uAC00\uC7A5 \uC131\uB2A5\uC774 \uC88B\uC740
+      \uB140\uC11D\uC774\uB2E4. \uC131\uB2A5\uC774 \uC88B\uC740 \uB9CC\uD07C \uAD49\uC7A5\uD788
+      \uBE44\uC2F8\uB2E4."
+    <Price>k__BackingField: 4500000
     <Rarity>k__BackingField: 0
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
-      _serializedList: []
-    <Icon>k__BackingField: {fileID: 0}
+      _serializedList:
+      - Key: 1
+        Value: 1000
+      - Key: 2
+        Value: 850
+      - Key: 3
+        Value: 500
+    <Icon>k__BackingField: {fileID: 21300000, guid: 845e0824236b57048b9923e6019c912b,
+      type: 3}
     <HardwareType>k__BackingField: 2
   <MaxStackCount>k__BackingField: 1

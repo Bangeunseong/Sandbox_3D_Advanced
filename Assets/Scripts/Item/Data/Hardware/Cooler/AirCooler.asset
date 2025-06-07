@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: AirCooler
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
-    <ItemName>k__BackingField: 
-    <Description>k__BackingField: "Cpu\uC758 \uC628\uB3C4\uB97C \uB0AE\uCDB0\uC900\uB2E4."
-    <Price>k__BackingField: 0
+    <ItemName>k__BackingField: "\uACF5\uB7AD \uCFE8\uB7EC"
+    <Description>k__BackingField: "\uACF5\uB7AD \uBC29\uC2DD\uC73C\uB85C Cpu\uC758
+      \uC628\uB3C4\uB97C \uB0AE\uCDB0\uC900\uB2E4."
+    <Price>k__BackingField: 30000
     <Rarity>k__BackingField: 0
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
-      _serializedList: []
-    <Icon>k__BackingField: {fileID: 0}
+      _serializedList:
+      - Key: 0
+        Value: 60
+      - Key: 2
+        Value: 15
+    <Icon>k__BackingField: {fileID: 21300000, guid: c4f0cea106d98af4fa050c1af70d70e6,
+      type: 3}
     <HardwareType>k__BackingField: 3
   <MaxStackCount>k__BackingField: 1

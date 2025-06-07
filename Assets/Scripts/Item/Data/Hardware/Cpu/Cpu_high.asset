@@ -12,21 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6021b85ee3f406bbf10f21b2f8dcba7, type: 3}
   m_Name: Cpu_high
   m_EditorClassIdentifier: 
-  <ArmorItemInfo>k__BackingField:
-    <ItemName>k__BackingField: Diamond Boots
-    <Description>k__BackingField: Boots made with leather and diamond
-    <Price>k__BackingField: 60
+  <HardwareItemInfo>k__BackingField:
+    <ItemName>k__BackingField: Ryzen 9950X3D
+    <Description>k__BackingField: "AMD\uC5D0\uC11C \uCD9C\uC2DC\uD55C \uCD5C\uC2E0\uD615
+      Cpu\uC774\uB2E4. 16\uCF54\uC5B4 32\uC4F0\uB808\uB4DC\uB97C \uAC00\uC9C0\uACE0
+      \uC788\uC5B4 \uBCF5\uC7A1\uD55C \uC5F0\uC0B0\uC744 \uD6A8\uC728\uC801\uC73C\uB85C
+      \uC218\uD589\uD560 \uC218 \uC788\uB2E4."
+    <Price>k__BackingField: 1134000
     <Rarity>k__BackingField: 2
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
       _serializedList:
-      - Key: 0
-        Value: 15
       - Key: 2
-        Value: 32
+        Value: 100
       - Key: 3
-        Value: 3
-    <Icon>k__BackingField: {fileID: 21300000, guid: 49440cba7d094ad42ba19be3e4f0428c,
+        Value: 80
+      - Key: 1
+        Value: 250
+    <Icon>k__BackingField: {fileID: 21300000, guid: 6dd399ba5ce81784180736b38d664d3e,
       type: 3}
-    <ArmorType>k__BackingField: 3
+    <HardwareType>k__BackingField: 0
   <MaxStackCount>k__BackingField: 1

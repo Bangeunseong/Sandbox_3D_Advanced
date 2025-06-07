@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Gpu_low
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
-    <ItemName>k__BackingField: 
-    <Description>k__BackingField: 
-    <Price>k__BackingField: 0
+    <ItemName>k__BackingField: RTX 5060
+    <Description>k__BackingField: "Nvidia\uC5D0\uC11C \uC81C\uC791\uD55C Gpu\uB85C
+      3840\uAC1C\uC758 \uCFE0\uB2E4 \uD504\uB85C\uC138\uC11C\uB97C \uAC00\uC9C0\uACE0
+      \uC788\uB2E4."
+    <Price>k__BackingField: 489000
     <Rarity>k__BackingField: 0
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
-      _serializedList: []
-    <Icon>k__BackingField: {fileID: 0}
+      _serializedList:
+      - Key: 1
+        Value: 360
+      - Key: 2
+        Value: 240
+      - Key: 3
+        Value: 120
+    <Icon>k__BackingField: {fileID: 21300000, guid: 8cb90e89b33af6045a540f3e3345ea48,
+      type: 3}
     <HardwareType>k__BackingField: 2
   <MaxStackCount>k__BackingField: 1

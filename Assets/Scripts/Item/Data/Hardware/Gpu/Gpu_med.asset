@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Gpu_med
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
-    <ItemName>k__BackingField: 
-    <Description>k__BackingField: 
-    <Price>k__BackingField: 0
-    <Rarity>k__BackingField: 0
+    <ItemName>k__BackingField: RX 9070XT
+    <Description>k__BackingField: "AMD\uC5D0\uC11C \uC81C\uC791\uD55C Gpu\uB85C 4096\uAC1C\uC758
+      \uC2A4\uD2B8\uB9BC \uD504\uB85C\uC138\uC11C\uB4E4\uC744 \uAC00\uC9C0\uACE0
+      \uC788\uB2E4."
+    <Price>k__BackingField: 1060000
+    <Rarity>k__BackingField: 1
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
-      _serializedList: []
-    <Icon>k__BackingField: {fileID: 0}
+      _serializedList:
+      - Key: 1
+        Value: 720
+      - Key: 2
+        Value: 600
+      - Key: 3
+        Value: 300
+    <Icon>k__BackingField: {fileID: 21300000, guid: 493740c5dba0ca74698cef3d9bd3a53f,
+      type: 3}
     <HardwareType>k__BackingField: 2
   <MaxStackCount>k__BackingField: 1

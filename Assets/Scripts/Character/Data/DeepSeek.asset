@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38789381669f44f5aa3e3378a000b357, type: 3}
-  m_Name: ChatGPT
+  m_Name: DeepSeek
   m_EditorClassIdentifier: 
   <Stat>k__BackingField:
-    <Name>k__BackingField: ChatGPT
+    <Name>k__BackingField: DeepSeek
     <BaseLifeSpan>k__BackingField: 100
     <BaseComputeForce>k__BackingField: 25
     <BaseComputeSpeed>k__BackingField: 15

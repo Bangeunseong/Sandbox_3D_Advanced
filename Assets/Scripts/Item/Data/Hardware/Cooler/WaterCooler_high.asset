@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: WaterCooler_high
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
-    <ItemName>k__BackingField: 
-    <Description>k__BackingField: "Cpu\uC758 \uC628\uB3C4\uB97C \uB0AE\uCDB0\uC900\uB2E4."
-    <Price>k__BackingField: 0
-    <Rarity>k__BackingField: 0
+    <ItemName>k__BackingField: "2\uC5F4 \uC218\uB7AD \uCFE8\uB7EC"
+    <Description>k__BackingField: "\uC218\uB7AD\uC2DD\uC73C\uB85C Cpu\uC758 \uC628\uB3C4\uB97C
+      \uB0AE\uCDB0\uC900\uB2E4. 2\uC5F4\uC9DC\uB9AC \uB77C\uB514\uC5D0\uC774\uD130\uAC00
+      \uB2EC\uB824\uC788\uB2E4."
+    <Price>k__BackingField: 150000
+    <Rarity>k__BackingField: 2
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
-      _serializedList: []
-    <Icon>k__BackingField: {fileID: 0}
+      _serializedList:
+      - Key: 0
+        Value: 200
+      - Key: 2
+        Value: 40
+    <Icon>k__BackingField: {fileID: 21300000, guid: ecfed34567befc34e8545d57fa3b3233,
+      type: 3}
     <HardwareType>k__BackingField: 3
   <MaxStackCount>k__BackingField: 1
