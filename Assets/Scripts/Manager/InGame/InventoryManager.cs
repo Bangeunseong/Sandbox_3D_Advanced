@@ -13,7 +13,9 @@ namespace Manager.InGame
     {
         [field: Header("Selected Item Info.")]
         [field: SerializeField] public ItemSlot SelectedItem { get; private set; }
-
+        [field: SerializeField] public ItemSlot[] EquippedHardWares { get; private set; } = new ItemSlot[Enum.GetValues(typeof(HardwareType)).Length];
+        [field: SerializeField] public ItemSlot EquippedSoftWare { get; private set; }
+        
         // Fields
         private UIManager uiManager;
         private ItemManager itemManager;
@@ -37,6 +39,7 @@ namespace Manager.InGame
             itemManager = ItemManager.Instance;
             
             // uiManager.MainUI.Initialize_ItemSlots( 'data' );
+            // Update Equipped item slots then update unit condition values
             
             SelectedItem = null;
         }
@@ -98,12 +101,36 @@ namespace Manager.InGame
 
         public void OnItemEquipped()
         {
-            SelectedItem.UpdateEquipState(true, UnitManager.Instance.currentUnit);
+            switch (SelectedItem.ItemInfo)
+            {
+                case HardwareItemInfo hardwareItemInfo:
+                    if(EquippedHardWares[(int)hardwareItemInfo.HardwareType])
+                        EquippedHardWares[(int)hardwareItemInfo.HardwareType].UpdateEquipState(false);
+                    EquippedHardWares[(int)hardwareItemInfo.HardwareType] = SelectedItem;
+                    break;
+                case SoftwareItemInfo:
+                    if(EquippedSoftWare)
+                        EquippedSoftWare.UpdateEquipState(false);
+                    EquippedSoftWare = SelectedItem;
+                    break;
+            }
+
+            SelectedItem.UpdateEquipState(true, UnitManager.Instance.CurrentUnit);
         }
 
         public void OnItemUnequipped()
         {
-            SelectedItem.UpdateEquipState(false);
+            switch (SelectedItem.ItemInfo)
+            {
+                case HardwareItemInfo hardwareItemInfo:
+                    EquippedHardWares[(int)hardwareItemInfo.HardwareType].UpdateEquipState(false);
+                    EquippedHardWares[(int)hardwareItemInfo.HardwareType] = null;
+                    break;
+                case SoftwareItemInfo:
+                    EquippedSoftWare.UpdateEquipState(false);
+                    EquippedSoftWare = null;
+                    break;
+            }
         }
 
         public void OnItemRemoved()
@@ -113,6 +140,8 @@ namespace Manager.InGame
             
             if (SelectedItem.ItemInfo.ItemType == ItemType.Equipable)
             {
+                if(SelectedItem.IsEquipped) { OnItemUnequipped(); }
+                
                 SelectedItem.Clear();
                 SelectedItem = null;
                 uiManager.MainUI.HideItemInfoPanel();

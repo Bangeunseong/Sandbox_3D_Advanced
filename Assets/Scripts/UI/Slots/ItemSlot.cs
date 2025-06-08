@@ -1,6 +1,7 @@
 ﻿using System;
 using Character;
 using Character.Scripts;
+using Character.Scripts.Data;
 using Item.Scripts;
 using JetBrains.Annotations;
 using Manager.InGame;
@@ -89,20 +90,36 @@ namespace UI.Slots
             quantityText.text = quantity.ToString();
         }
 
-        public void UpdateEquipState(bool isEquipped, Unit owner = null)
+        public void UpdateEquipState(bool equip, Unit owner = null)
         {
-            if (isEquipped && !owner)
+            if (equip && !owner)
             {
                 Debug.LogWarning("Owner is missing!");
-                // TODO: return;
+                return;
             }
-            IsEquipped = isEquipped;
-            Owner = owner;
+            IsEquipped = equip;
             equipIconUI.SetActive(IsEquipped);
+
+            if (equip)
+            {
+                Owner = owner;
+                foreach (StatType type in Enum.GetValues(typeof(StatType)))
+                    if (ItemInfo != null && ItemInfo.Values.TryGetValue(type, out var value)) 
+                        Owner.UnitCondition.UpdateValueAndExtraByType(type, value);
+            }
+            else
+            {
+                foreach (StatType type in Enum.GetValues(typeof(StatType)))
+                    if (ItemInfo != null && ItemInfo.Values.TryGetValue(type, out var value)) 
+                        Owner.UnitCondition.UpdateValueAndExtraByType(type, -value);
+                Owner = null;
+            }
         }
 
         public void Clear()
         {
+            if(ItemInfo != null && IsEquipped) { UpdateEquipState(false, Owner); }
+            
             ItemInfo = null;
             IsEquipped = false;
             Owner = null;

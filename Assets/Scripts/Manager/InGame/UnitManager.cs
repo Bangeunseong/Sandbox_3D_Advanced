@@ -7,7 +7,9 @@ namespace Manager.InGame
 {
     public class UnitManager : MonoBehaviour
     {
-        public Unit currentUnit;
+        [field: Header("Unit")]
+        [field: SerializeField] public Unit CurrentUnit { get; private set; }
+        
         public static UnitManager Instance { get; private set; }
 
         private void Awake()
@@ -16,6 +18,8 @@ namespace Manager.InGame
             {
                 Instance = this;
             } else{ if(Instance != this) Destroy(gameObject); }
+
+            if (!CurrentUnit) CurrentUnit = FindObjectOfType<Unit>();
         }
     }
 }

@@ -16,6 +16,10 @@ namespace UI.Slots
         [SerializeField] private TextMeshProUGUI valueText;
         [SerializeField] private TextMeshProUGUI extraText; 
 
+        [field: Header("Values")]
+        [field: SerializeField] public float Value { get; private set; }
+        [field: SerializeField] public float Extra { get; private set; }
+        
         private void Awake()
         {
             if (!statusPanel) statusPanel = gameObject.GetComponent_Helper<Image>();
@@ -47,17 +51,21 @@ namespace UI.Slots
 
             statusPanel.color = panelColor;
             icon.sprite = image;
+            Value = value;
+            Extra = extra;
             valueText.text = $"{value}";
             extraText.text = $"+{extra}";
         }
 
         public void UpdateValue(float value)
         {
+            Value = value;
             valueText.text = $"{value}";
         }
 
         public void UpdateExtra(float extra)
         {
+            Extra = extra;
             extraText.text = $"+{extra}";
         }
     }

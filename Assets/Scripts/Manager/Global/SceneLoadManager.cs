@@ -12,8 +12,8 @@ namespace Manager.Global
         [SerializeField] private string previousScene;
         [SerializeField] private string currentScene;
         private AsyncOperation sceneLoad;
-        private bool isInputAllowed = true;
-        private bool isKeyPressed = false;
+        private bool isInputAllowed;
+        private bool isKeyPressed;
         private UIManager uiManager;
 
         public static SceneLoadManager Instance { get; private set; }
@@ -28,10 +28,8 @@ namespace Manager.Global
         {
             uiManager = UIManager.Instance;
             
-            uiManager.ChangeState(CurrentScene.Intro);
             currentScene = nameof(CurrentScene.Intro);
-
-            StartCoroutine(StartMainScene());
+            // StartCoroutine(LoadMainScene());
         }
 
         private void Update()
@@ -42,7 +40,6 @@ namespace Manager.Global
 
         public async Task OpenScene(string sceneName)
         {
-            isInputAllowed = false;
             previousScene = currentScene;
             if (previousScene != null && previousScene != sceneName)
             {
@@ -78,6 +75,7 @@ namespace Manager.Global
             uiManager.LoadingUI.UpdateLoadingProgress(1f);
             uiManager.LoadingUI.UpdateProgressText("Press any key to continue...");
             await WaitForUserInput();
+            isInputAllowed = false;
             
             sceneLoad!.allowSceneActivation = true;
             while (sceneLoad is { isDone: false }) 
@@ -100,9 +98,9 @@ namespace Manager.Global
             }
         }
 
-        private IEnumerator StartMainScene()
+        private IEnumerator LoadMainScene()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             _ = OpenScene(nameof(CurrentScene.Main));
         }
     }

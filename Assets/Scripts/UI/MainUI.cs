@@ -90,6 +90,10 @@ namespace UI
             dropBtn.onClick.AddListener(OnClickDropBtn);
         }
 
+        /// <summary>
+        /// 불러온 세이브 데이터를 적용하는 인벤토리 데이터 셋팅 함수
+        /// </summary>
+        /// <param name="itemSlots"></param>
         public void Initialize_ItemSlots(List<ItemSlot> itemSlots)
         {
             foreach (var itemSlot in itemSlots)
@@ -98,6 +102,11 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// 캐릭터 데이터 UI 초기화 함수
+        /// </summary>
+        /// <param name="stat"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void Initialize_StatusUI(UnitStat stat)
         {
             foreach (StatType type in Enum.GetValues(typeof(StatType)))
