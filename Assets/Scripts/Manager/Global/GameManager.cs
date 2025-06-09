@@ -54,7 +54,7 @@ namespace Manager.Global
             };
             
             var json = JsonConvert.SerializeObject(save, Newtonsoft.Json.Formatting.Indented);
-            Debug.Log(json);
+            // Debug.Log(json);
             await File.WriteAllTextAsync(SaveFilePath, json);
         }
 

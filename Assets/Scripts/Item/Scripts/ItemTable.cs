@@ -40,10 +40,10 @@ namespace Item.Scripts
             if (itemDictionaryInId.TryGetValue(id, out var item))
             {
                 if (item is HardwareItemData hardwareItem) return hardwareItem;
-                Debug.LogWarning($"Wrong Type of item:{id} found in dictionary!");
+                // Debug.LogWarning($"Wrong Type of item:{id} found in dictionary!");
                 return null;
             }
-            Debug.LogWarning($"Does not have item:{id} in dictionary!");
+            // Debug.LogWarning($"Does not have item:{id} in dictionary!");
             return null;
         }
 
@@ -52,10 +52,10 @@ namespace Item.Scripts
             if (itemDictionary.TryGetValue(itemName, out var item))
             {
                 if (item is HardwareItemData hardwareItem) return hardwareItem;
-                Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
+                // Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
                 return null;
             }
-            Debug.LogWarning($"Does not have {itemName} item in dictionary!");
+            // Debug.LogWarning($"Does not have {itemName} item in dictionary!");
             return null;
         }
 
@@ -64,10 +64,10 @@ namespace Item.Scripts
             if (itemDictionaryInId.TryGetValue(id, out var item))
             {
                 if (item is SoftwareItemData softwareItem) return softwareItem;
-                Debug.LogWarning($"Wrong Type of item:{id} found in dictionary!");
+                // Debug.LogWarning($"Wrong Type of item:{id} found in dictionary!");
                 return null;
             }
-            Debug.LogWarning($"Does not have item:{id} in dictionary!");
+            // Debug.LogWarning($"Does not have item:{id} in dictionary!");
             return null;
         }
 
@@ -76,10 +76,10 @@ namespace Item.Scripts
             if (itemDictionary.TryGetValue(itemName, out var item))
             {
                 if (item is SoftwareItemData softwareItem) return softwareItem;
-                Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
+                // Debug.LogWarning($"Wrong Type of {itemName} item found in dictionary!");
                 return null;
             }
-            Debug.LogWarning($"Does not have {itemName} item in dictionary!");
+            // Debug.LogWarning($"Does not have {itemName} item in dictionary!");
             return null;
         }
     }

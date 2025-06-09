@@ -47,17 +47,15 @@ namespace Manager.InGame
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A)) 
-            {
-                AddItem();
-            }
+            if (Input.GetKeyDown(KeyCode.A)) AddItem();
+            
         }
 
         public void AddItem()
         {
             var data = ItemManager.Instance.GetHardWareItem(
                 itemManager.ItemTable.ItemKeys[Random.Range(0, itemManager.ItemTable.items.Count)]);
-            if (!data) { Debug.LogWarning("Data is null!"); return;}
+            if (!data) { Debug.LogWarning("Data is null!"); return; }
 
             if (data.MaxStackCount > 1)
             {
@@ -76,6 +74,7 @@ namespace Manager.InGame
                 emptySlot.Set(data.HardwareItemInfo, false, null, 1, data.MaxStackCount);
                 uiManager.MainUI.UpdateOccupyCountText();
                 _ = GameManager.Instance.TrySaveData();
+                uiManager.MainUI.SortItemSlots();
                 return;
             }
             
@@ -103,6 +102,7 @@ namespace Manager.InGame
 
             SelectedItem = itemSlot;
             uiManager.MainUI.ShowItemInfoPanel(itemSlot);
+            uiManager.MainUI.SortItemSlots();
         }
 
         public void OnItemEquipped()
@@ -123,6 +123,7 @@ namespace Manager.InGame
 
             SelectedItem.UpdateEquipState(true, UnitManager.Instance.CurrentUnit);
             _ = GameManager.Instance.TrySaveData();
+            uiManager.MainUI.SortItemSlots();
         }
 
         public void OnItemUnequipped(bool save)
@@ -138,7 +139,10 @@ namespace Manager.InGame
                     EquippedSoftWare = null;
                     break;
             }
-            if(save) _ = GameManager.Instance.TrySaveData();
+
+            if (!save) return;
+            _ = GameManager.Instance.TrySaveData();
+            uiManager.MainUI.SortItemSlots();
         }
 
         public void OnItemRemoved()
@@ -154,6 +158,7 @@ namespace Manager.InGame
                 SelectedItem = null;
                 uiManager.MainUI.HideItemInfoPanel();
                 _ = GameManager.Instance.TrySaveData();
+                uiManager.MainUI.SortItemSlots();
                 return;
             }
             
@@ -166,6 +171,7 @@ namespace Manager.InGame
                 uiManager.MainUI.UpdateOccupyCountText();
             }
             _ = GameManager.Instance.TrySaveData();
+            uiManager.MainUI.SortItemSlots();
         }
     }
 }

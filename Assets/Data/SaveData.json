@@ -5,12 +5,12 @@
   "Experience": 0,
   "LifeSpan": 100.0,
   "MaxLifeSpan": 350.0,
-  "ComputeForce": 275.0,
-  "ComputeSpeed": 355.0,
-  "Accuracy": 83.0,
+  "ComputeForce": 995.0,
+  "ComputeSpeed": 955.0,
+  "Accuracy": 383.0,
   "ItemSlots": [
     {
-      "ItemId": 30,
+      "ItemId": 10,
       "Index": 0,
       "IsEquipped": true,
       "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
@@ -18,7 +18,7 @@
       "MaxStackCount": 1
     },
     {
-      "ItemId": 32,
+      "ItemId": 10,
       "Index": 1,
       "IsEquipped": false,
       "OwnerId": null,
@@ -27,6 +27,14 @@
     },
     {
       "ItemId": 10,
+      "Index": 2,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 30,
       "Index": 3,
       "IsEquipped": true,
       "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
@@ -34,24 +42,64 @@
       "MaxStackCount": 1
     },
     {
-      "ItemId": 0,
-      "Index": 9,
-      "IsEquipped": false,
-      "OwnerId": null,
-      "Quantity": 1,
-      "MaxStackCount": 1
-    },
-    {
       "ItemId": 1,
-      "Index": 10,
+      "Index": 4,
       "IsEquipped": true,
       "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
       "Quantity": 1,
       "MaxStackCount": 1
     },
     {
-      "ItemId": 12,
+      "ItemId": 31,
+      "Index": 5,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 2,
+      "Index": 10,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 32,
       "Index": 11,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 12,
+      "Index": 12,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 22,
+      "Index": 13,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 22,
+      "Index": 14,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 2,
+      "Index": 15,
       "IsEquipped": false,
       "OwnerId": null,
       "Quantity": 1,

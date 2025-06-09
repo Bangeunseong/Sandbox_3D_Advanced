@@ -134,6 +134,7 @@ namespace UI
             }
             
             UpdateOccupyCountText();
+            SortItemSlots();
         }
 
         /// <summary>
@@ -184,6 +185,16 @@ namespace UI
         public void UpdateOccupyCountText()
         {
             occupyCountText.text = $"<color=orange>{GetItemCount()}</color> <color=#7B7B7B>/{MaxInventorySlot}</color>";
+        }
+
+        public void SortItemSlots()
+        {
+            var sorted = ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                .ThenByDescending(slot => slot.IsEquipped).ToList();
+            for (var i = 0; i < sorted.Count; i++)
+            {
+                sorted[i].transform.SetSiblingIndex(i);
+            }
         }
 
         private int GetItemCount()
