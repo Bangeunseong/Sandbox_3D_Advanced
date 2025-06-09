@@ -6,7 +6,7 @@ namespace Item.Scripts
     public class SoftwareItemData : ScriptableObject
     {
         [field: Header("Item Info.")] 
-        [field: SerializeField] public SoftwareItemInfo ArmorItemInfo { get; private set; }
+        [field: SerializeField] public SoftwareItemInfo SoftwareItemInfo { get; private set; }
         
         [field: Header("Max Stack Count")]
         [field: SerializeField] public int MaxStackCount { get; private set; }

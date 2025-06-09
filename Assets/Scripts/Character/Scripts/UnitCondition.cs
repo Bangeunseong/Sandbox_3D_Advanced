@@ -3,6 +3,7 @@ using Character.Scripts.Data;
 using Character.Scripts.Interface;
 using JetBrains.Annotations;
 using Manager.Global;
+using Manager.Global.DTO;
 using UnityEngine;
 
 namespace Character.Scripts
@@ -30,20 +31,50 @@ namespace Character.Scripts
         private UIManager uiManager;
         
         [CanBeNull] public event Action OnDamage, OnDeath;
-
+        
         private void Start()
         {
             uiManager = UIManager.Instance;
+            UnitData = ResourceManager.Instance.GetResourceByName<UnitData>(ResourceManager.CharacterPrefix +
+                                                                            GameManager.Instance.SelectedCharacter);
+            InitializeStat(GameManager.Instance.SaveData);
+        }
 
-            MaxLifeSpan = LifeSpan = UnitData.Stat.BaseLifeSpan;
-            ComputeForce = UnitData.Stat.BaseComputeForce;
-            ComputeSpeed = UnitData.Stat.BaseComputeSpeed;
-            Accuracy = UnitData.Stat.BaseAccuracy;
+        private void InitializeStat(SaveData data)
+        {
+            if (data == null)
+            {
+                MaxLifeSpan = LifeSpan = UnitData.Stat.BaseLifeSpan;
+                ComputeForce = UnitData.Stat.BaseComputeForce;
+                ComputeSpeed = UnitData.Stat.BaseComputeSpeed;
+                Accuracy = UnitData.Stat.BaseAccuracy;
+                
+                uiManager.MainUI.Initialize_StatusUI(UnitData.Stat);
+            }
+            else
+            {
+                MaxLifeSpan = data.MaxLifeSpan;
+                LifeSpan = data.LifeSpan;
+                ComputeForce = data.ComputeForce;
+                ComputeSpeed = data.ComputeSpeed;
+                Accuracy = data.Accuracy;
+                foreach (StatType type in Enum.GetValues(typeof(StatType)))
+                {
+                    var value = type switch
+                    {
+                        StatType.LifeSpan => MaxLifeSpan,
+                        StatType.ComputeForce => ComputeForce,
+                        StatType.ComputeSpeed => ComputeSpeed,
+                        StatType.Accuracy => Accuracy,
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
+                    uiManager.MainUI.UpdateStatValueByType(type, value);
+                }
+            }
+
             ComputeRate = UnitData.Stat.BaseComputeRate;
             Speed = UnitData.Stat.BaseSpeed;
             RotationDamping = UnitData.Stat.BaseRotationDamping;
-            
-            uiManager.MainUI.Initialize_StatusUI(UnitData.Stat);
         }
 
         public void UpdateValueAndExtraByType(StatType type, float value)
@@ -75,7 +106,7 @@ namespace Character.Scripts
         {
             if (IsDead) return;
             LifeSpan -= damage;
-            uiManager.MainUI.UpdateStatValueByType(StatType.LifeSpan, LifeSpan);
+            // Update GameUI LifeSpan
             OnDamage?.Invoke();
 
             if (LifeSpan <= 0) { OnDead(); }

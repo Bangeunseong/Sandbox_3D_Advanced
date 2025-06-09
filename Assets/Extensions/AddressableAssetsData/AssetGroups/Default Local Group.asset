@@ -23,6 +23,27 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce55e39beeb55eb439745664c40450ca
+    m_Address: Assets/Scripts/Character/Data/ChatGPT.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    - Character
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7443ee37fba6084b9e11611dcf88743
+    m_Address: Assets/Scripts/Character/Data/DeepSeek.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    - Character
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a8efc688f280c54395cfaafed2d50ce
+    m_Address: Assets/Scripts/Character/Data/Gemini.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    - Character
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0787a4653af5de54cbfe47548df7969a, type: 2}
   m_SchemaSet:

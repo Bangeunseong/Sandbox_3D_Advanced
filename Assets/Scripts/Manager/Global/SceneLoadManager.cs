@@ -57,6 +57,7 @@ namespace Manager.Global
             
             Debug.Log("Resource and Scene Load Started!");
             await ResourceManager.Instance.LoadSceneResourcesWithProgress(currentScene);
+            await GameManager.Instance.TryLoadData();
             await LoadSceneWithProgress(currentScene);
         }
         
@@ -98,10 +99,11 @@ namespace Manager.Global
             }
         }
 
-        private IEnumerator LoadMainScene()
-        {
-            yield return new WaitForSeconds(1);
-            _ = OpenScene(nameof(CurrentScene.Main));
-        }
+        // Scene Loading Test Method (Deprecated)
+        // private IEnumerator LoadMainScene()
+        // {
+        //     yield return new WaitForSeconds(1);
+        //     _ = OpenScene(nameof(CurrentScene.Main));
+        // }
     }
 }

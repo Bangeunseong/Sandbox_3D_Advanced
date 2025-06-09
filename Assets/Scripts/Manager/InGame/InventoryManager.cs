@@ -14,7 +14,7 @@ namespace Manager.InGame
         [field: Header("Selected Item Info.")]
         [field: SerializeField] public ItemSlot SelectedItem { get; private set; }
         [field: SerializeField] public ItemSlot[] EquippedHardWares { get; private set; } = new ItemSlot[Enum.GetValues(typeof(HardwareType)).Length];
-        [field: SerializeField] public ItemSlot EquippedSoftWare { get; private set; }
+        [field: SerializeField] public ItemSlot EquippedSoftWare { get; set; }
         
         // Fields
         private UIManager uiManager;
@@ -29,29 +29,33 @@ namespace Manager.InGame
             {
                 Instance = this;
             } else{ if (Instance != this) Destroy(gameObject); }
-            
-            // TODO: Load Inventory Data and Update Inventory UI
         }
 
         private void Start()
         {
             uiManager = UIManager.Instance;
             itemManager = ItemManager.Instance;
-            
-            // uiManager.MainUI.Initialize_ItemSlots( 'data' );
-            // Update Equipped item slots then update unit condition values
+
+            if (GameManager.Instance.SaveData != null)
+            {
+                var itemSlotData = GameManager.Instance.SaveData.ItemSlots;
+                uiManager.MainUI.Initialize_ItemSlots(itemSlotData);
+            }
             
             SelectedItem = null;
         }
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.A)) AddItem();
+            if (Input.GetKeyDown(KeyCode.A)) 
+            {
+                AddItem();
+            }
         }
 
         public void AddItem()
         {
-            var data = ItemManager.Instance.GetHardWareItemByName(
+            var data = ItemManager.Instance.GetHardWareItem(
                 itemManager.ItemTable.ItemKeys[Random.Range(0, itemManager.ItemTable.items.Count)]);
             if (!data) { Debug.LogWarning("Data is null!"); return;}
 
@@ -61,6 +65,7 @@ namespace Manager.InGame
                 if (slot)
                 {
                     slot.UpdateQuantity(slot.Quantity + 1);
+                    _ = GameManager.Instance.TrySaveData();
                     return;
                 }
             }
@@ -70,6 +75,7 @@ namespace Manager.InGame
             {
                 emptySlot.Set(data.HardwareItemInfo, false, null, 1, data.MaxStackCount);
                 uiManager.MainUI.UpdateOccupyCountText();
+                _ = GameManager.Instance.TrySaveData();
                 return;
             }
             
@@ -116,9 +122,10 @@ namespace Manager.InGame
             }
 
             SelectedItem.UpdateEquipState(true, UnitManager.Instance.CurrentUnit);
+            _ = GameManager.Instance.TrySaveData();
         }
 
-        public void OnItemUnequipped()
+        public void OnItemUnequipped(bool save)
         {
             switch (SelectedItem.ItemInfo)
             {
@@ -131,6 +138,7 @@ namespace Manager.InGame
                     EquippedSoftWare = null;
                     break;
             }
+            if(save) _ = GameManager.Instance.TrySaveData();
         }
 
         public void OnItemRemoved()
@@ -140,11 +148,12 @@ namespace Manager.InGame
             
             if (SelectedItem.ItemInfo.ItemType == ItemType.Equipable)
             {
-                if(SelectedItem.IsEquipped) { OnItemUnequipped(); }
+                if(SelectedItem.IsEquipped) { OnItemUnequipped(false); }
                 
                 SelectedItem.Clear();
                 SelectedItem = null;
                 uiManager.MainUI.HideItemInfoPanel();
+                _ = GameManager.Instance.TrySaveData();
                 return;
             }
             
@@ -156,6 +165,7 @@ namespace Manager.InGame
                 uiManager.MainUI.HideItemInfoPanel();
                 uiManager.MainUI.UpdateOccupyCountText();
             }
+            _ = GameManager.Instance.TrySaveData();
         }
     }
 }

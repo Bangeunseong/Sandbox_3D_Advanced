@@ -33,6 +33,7 @@ namespace Item.Scripts
 
     [Serializable] public class ItemInfo
     {
+        [field: SerializeField] public int ItemId { get; private set; }
         [field: SerializeField] public string ItemName { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public int Price { get; private set; }

@@ -5,6 +5,7 @@ using Character.Scripts.Data;
 using Item.Scripts;
 using JetBrains.Annotations;
 using Manager.InGame;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,13 +13,15 @@ using Utils;
 
 namespace UI.Slots
 {
-    public class ItemSlot : MonoBehaviour
+    [Serializable] public class ItemSlot : MonoBehaviour
     {
         [field: Header("Item Info.")]
-        [CanBeNull] [field: SerializeField] public ItemInfo ItemInfo { get; private set; }
+        [field: SerializeField] public int ItemId { get; private set; } = -1;
+        [CanBeNull][JsonIgnore][field: SerializeField] public ItemInfo ItemInfo { get; private set; }
         [field: SerializeField] public int Index { get; private set; }
         [field: SerializeField] public bool IsEquipped { get; private set; }
-        [field: SerializeField] public Unit Owner { get; private set; }
+        [field: SerializeField] public string OwnerId { get; private set; }
+        [JsonIgnore][field: SerializeField] public Unit Owner { get; private set; }
         [field: SerializeField] public int Quantity { get; private set; }
         [field: SerializeField] public int MaxStackCount { get; private set; }
 
@@ -64,8 +67,10 @@ namespace UI.Slots
         public void Set(ItemInfo itemInfo, bool isEquipped, Unit owner, int quantity = 0, int maxStackCount = 0)
         {
             ItemInfo = itemInfo;
+            ItemId = itemInfo.ItemId;
             IsEquipped = isEquipped;
             Owner = owner;
+            OwnerId = owner?.Uuid;
             Quantity = quantity;
             MaxStackCount = maxStackCount;
             
@@ -82,6 +87,12 @@ namespace UI.Slots
                 quantityTextUI.SetActive(false);
                 equipIconUI.SetActive(isEquipped);
             }
+        }
+
+        public void UpdateOwner(Unit owner)
+        {
+            Owner = owner;
+            OwnerId = owner.Uuid;
         }
 
         public void UpdateQuantity(int quantity)
@@ -103,6 +114,7 @@ namespace UI.Slots
             if (equip)
             {
                 Owner = owner;
+                OwnerId = owner.Uuid;
                 foreach (StatType type in Enum.GetValues(typeof(StatType)))
                     if (ItemInfo != null && ItemInfo.Values.TryGetValue(type, out var value)) 
                         Owner.UnitCondition.UpdateValueAndExtraByType(type, value);
@@ -113,6 +125,7 @@ namespace UI.Slots
                     if (ItemInfo != null && ItemInfo.Values.TryGetValue(type, out var value)) 
                         Owner.UnitCondition.UpdateValueAndExtraByType(type, -value);
                 Owner = null;
+                OwnerId = null;
             }
         }
 
@@ -121,8 +134,10 @@ namespace UI.Slots
             if(ItemInfo != null && IsEquipped) { UpdateEquipState(false, Owner); }
             
             ItemInfo = null;
+            ItemId = -1;
             IsEquipped = false;
             Owner = null;
+            OwnerId = null;
             Quantity = 0;
             MaxStackCount = 0;
             

@@ -21,5 +21,10 @@ namespace Manager.InGame
 
             if (!CurrentUnit) CurrentUnit = FindObjectOfType<Unit>();
         }
+
+        public Unit FindUnitWithUuid(string uuid)
+        {
+            return CurrentUnit.Uuid.Equals(uuid) ? CurrentUnit : null;
+        }
     }
 }

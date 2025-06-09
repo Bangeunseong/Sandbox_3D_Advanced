@@ -5,10 +5,10 @@ using AYellowpaper.SerializedCollections;
 using Character.Scripts.Data;
 using Item.Scripts;
 using Manager.Global;
+using Manager.Global.DTO;
 using Manager.InGame;
 using TMPro;
 using UI.Slots;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -57,6 +57,10 @@ namespace UI
         [SerializeField] private GameObject backButtonUI;
         [SerializeField] private Button backBtn;
 
+        /// <summary>
+        /// MainUI 초기화 (SaveData 반영 X)
+        /// </summary>
+        /// <param name="uiManager"></param>
         public override void Init(UIManager uiManager)
         {
             base.Init(uiManager);
@@ -94,12 +98,42 @@ namespace UI
         /// 불러온 세이브 데이터를 적용하는 인벤토리 데이터 셋팅 함수
         /// </summary>
         /// <param name="itemSlots"></param>
-        public void Initialize_ItemSlots(List<ItemSlot> itemSlots)
+        public void Initialize_ItemSlots(List<ItemSlotData> itemSlots)
         {
             foreach (var itemSlot in itemSlots)
             {
-                ItemSlots[itemSlot.Index].Set(itemSlot.ItemInfo, itemSlot.IsEquipped, itemSlot.Owner, itemSlot.Quantity);
+                var item = ItemManager.Instance.GetHardWareItem(itemSlot.ItemId);
+                if (item) ItemSlots[itemSlot.Index].Set(item.HardwareItemInfo, itemSlot.IsEquipped, string.IsNullOrEmpty(itemSlot.OwnerId) ? null : UnitManager.Instance.FindUnitWithUuid(itemSlot.OwnerId), itemSlot.Quantity, itemSlot.MaxStackCount);
+                else
+                {
+                    var softwareItem = ItemManager.Instance.GetSoftWareItem(itemSlot.ItemId);
+                    ItemSlots[itemSlot.Index].Set(softwareItem.SoftwareItemInfo, itemSlot.IsEquipped, string.IsNullOrEmpty(itemSlot.OwnerId) ? null : UnitManager.Instance.FindUnitWithUuid(itemSlot.OwnerId), itemSlot.Quantity, itemSlot.MaxStackCount);
+                }
+                
+                // 만약 아이템이 장착된 상태가 아닌 경우 패스
+                if (!ItemSlots[itemSlot.Index].IsEquipped) continue;
+                
+                // 아이템의 타입에 따라 장착한 아이템의 배열 초기화
+                switch (ItemSlots[itemSlot.Index].ItemInfo)
+                {
+                    case HardwareItemInfo hardwareItemInfo:
+                        InventoryManager.Instance.EquippedHardWares[(int)hardwareItemInfo.HardwareType] = ItemSlots[itemSlot.Index];
+                        break;
+                    case SoftwareItemInfo:
+                        InventoryManager.Instance.EquippedSoftWare = ItemSlots[itemSlot.Index];
+                        break;
+                }
+                
+                // 아이템의 타입에 따라 적용된 아이템 효과 적용
+                foreach (StatType type in Enum.GetValues(typeof(StatType)))
+                {
+                    var originalExtra = StatusSlots[type].Extra;
+                    if (ItemSlots[itemSlot.Index].ItemInfo!.Values.TryGetValue(type, out var value))
+                        UpdateStatExtraByType(type, originalExtra + value);
+                }
             }
+            
+            UpdateOccupyCountText();
         }
 
         /// <summary>
@@ -124,21 +158,46 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// 아이템 효과 타입에 따라 Value 업데이트 (실제 유닛의 Stat Value)
+        /// </summary>
+        /// <param name="statType"></param>
+        /// <param name="value"></param>
         public void UpdateStatValueByType(StatType statType, float value)
         {
             StatusSlots[statType].UpdateValue(value);
         }
 
+        /// <summary>
+        /// 아이템 효과 타입에 따라 Extra 업데이트 (아이템 효과 Stat Value)
+        /// </summary>
+        /// <param name="statType"></param>
+        /// <param name="extra"></param>
         public void UpdateStatExtraByType(StatType statType, float extra)
         {
             StatusSlots[statType].UpdateExtra(extra);
         }
 
+        /// <summary>
+        /// 인벤토리 공간 UI 업데이트
+        /// </summary>
         public void UpdateOccupyCountText()
         {
             occupyCountText.text = $"<color=orange>{GetItemCount()}</color> <color=#7B7B7B>/{MaxInventorySlot}</color>";
         }
 
+        private int GetItemCount()
+        {
+            return ItemSlots.Count(slot => slot.ItemInfo != null && slot.ItemInfo.ItemName != "");
+        }
+
+        protected override CurrentScene GetUIState()
+        {
+            return CurrentScene.Main;
+        }
+        
+        #region Button Events for MainUI
+        
         private void ShowStatusUI()
         {
             buttonUI.SetActive(false);
@@ -258,7 +317,7 @@ namespace UI
 
         private void OnClickUnequipBtn()
         {
-            InventoryManager.Instance.OnItemUnequipped();
+            InventoryManager.Instance.OnItemUnequipped(true);
             equipBtn.gameObject.SetActive(true);
             unequipBtn.gameObject.SetActive(false);
         }
@@ -275,15 +334,7 @@ namespace UI
             else if(inventoryUI.activeInHierarchy) HideInventoryUI();
             backButtonUI.SetActive(false);
         }
-
-        public int GetItemCount()
-        {
-            return ItemSlots.Count(slot => slot.ItemInfo != null && slot.ItemInfo.ItemName != "");
-        }
-
-        protected override CurrentScene GetUIState()
-        {
-            return CurrentScene.Main;
-        }
+        
+        #endregion
     }
 }

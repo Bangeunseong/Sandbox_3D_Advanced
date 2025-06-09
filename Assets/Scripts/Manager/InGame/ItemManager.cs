@@ -16,10 +16,12 @@ namespace Manager.InGame
             if (!Instance) { Instance = this; }
             else{ if (Instance != this) Destroy(gameObject); }
             
-            if (!ItemTable) ItemTable = ResourceManager.Instance.GetResourceByName<ItemTable>("ItemTable");
+            if (!ItemTable) ItemTable = ResourceManager.Instance.GetResourceByName<ItemTable>(ResourceManager.TablePrefix + nameof(Item.Scripts.ItemTable));
         }
-
-        public HardwareItemData GetHardWareItemByName(string name) => ItemTable.GetHardWareItemByName(name);
-        public SoftwareItemData GetSoftWareItemByName(string name) => ItemTable.GetSoftWareItemByName(name);
+        
+        public HardwareItemData GetHardWareItem(int id) => ItemTable.GetHardWareItem(id);
+        public HardwareItemData GetHardWareItem(string name) => ItemTable.GetHardWareItem(name);
+        public SoftwareItemData GetSoftWareItem(int id) => ItemTable.GetSoftWareItem(id);
+        public SoftwareItemData GetSoftWareItem(string name) => ItemTable.GetSoftWareItem(name);
     }
 }

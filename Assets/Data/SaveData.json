@@ -1,0 +1,61 @@
+{
+  "Uuid": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+  "SelectedCharacter": "ChatGPT",
+  "Level": 1,
+  "Experience": 0,
+  "LifeSpan": 100.0,
+  "MaxLifeSpan": 350.0,
+  "ComputeForce": 275.0,
+  "ComputeSpeed": 355.0,
+  "Accuracy": 83.0,
+  "ItemSlots": [
+    {
+      "ItemId": 30,
+      "Index": 0,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 32,
+      "Index": 1,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 10,
+      "Index": 3,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 0,
+      "Index": 9,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 1,
+      "Index": 10,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 12,
+      "Index": 11,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    }
+  ]
+}

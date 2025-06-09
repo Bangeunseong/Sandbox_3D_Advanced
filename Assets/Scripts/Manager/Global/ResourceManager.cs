@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AYellowpaper.SerializedCollections;
+using Character.Scripts.Data;
+using Item.Scripts;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -10,6 +12,10 @@ namespace Manager.Global
 {
     public class ResourceManager : MonoBehaviour
     {
+        // Prefix Rules
+        public const string CharacterPrefix = "Character_";
+        public const string TablePrefix = "Table_";
+        
         [Header("Resources")]
         [SerializeField] private SerializedDictionary<string, Object> resources = new();
         private readonly Dictionary<string, List<AsyncOperationHandle>> loadedHandlesByLabel = new();
@@ -28,8 +34,6 @@ namespace Manager.Global
         {
             var handle = Addressables.LoadAssetsAsync<Object>(sceneLabel, null);
             var lastProgress = -1f;
-            
-            // Set Progress bar UI
 
             while (!handle.IsDone)
             {
@@ -37,7 +41,6 @@ namespace Manager.Global
                 if (Mathf.Abs(progress - lastProgress) > 0.1f)
                 {
                     lastProgress = progress;
-                    // Change Progress bar UI
                 }
                 await Task.Yield();
             }
@@ -45,7 +48,18 @@ namespace Manager.Global
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 foreach (var resource in handle.Result)
-                    if (resource) resources.TryAdd(resource.name, resource);
+                    if (resource)
+                    {
+                        switch (resource)
+                        {
+                            case ItemTable itemTable:
+                                resources.TryAdd(TablePrefix + itemTable.name, itemTable);
+                                break;
+                            case UnitData unitData:
+                                resources.TryAdd(CharacterPrefix + unitData.name, unitData);
+                                break;
+                        }
+                    }
                 
                 loadedHandlesByLabel.TryAdd(sceneLabel, new List<AsyncOperationHandle>());
                 loadedHandlesByLabel[sceneLabel].Add(handle);

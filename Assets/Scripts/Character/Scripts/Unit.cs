@@ -1,5 +1,6 @@
 ﻿using System;
 using Character.Scripts.Data;
+using Manager.Global;
 using UnityEngine;
 using Utils;
 
@@ -7,6 +8,9 @@ namespace Character.Scripts
 {
     public class Unit : MonoBehaviour
     {
+        [field: Header("UUID")]
+        [field: SerializeField] public string Uuid { get; private set; }
+        
         [field: Header("Animations")]
         [field: SerializeField] public AnimationData AnimationData { get; private set; }
 
@@ -22,6 +26,11 @@ namespace Character.Scripts
             if (!UnitCondition) UnitCondition = gameObject.GetComponent_Helper<UnitCondition>();
             
             AnimationData.Initialize();
+        }
+
+        private void Start()
+        {
+            Uuid = GameManager.Instance.SaveData != null ? GameManager.Instance.SaveData.Uuid : Guid.NewGuid().ToString();
         }
 
         private void Reset()
