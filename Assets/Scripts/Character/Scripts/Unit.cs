@@ -18,19 +18,17 @@ namespace Character.Scripts
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public UnitCondition UnitCondition { get; private set; }
+        [field: SerializeField] public UnitController UnitController { get; private set; }
+        [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
         private void Awake()
         {
             if (!Animator) Animator = gameObject.GetComponentInChildren_Helper<Animator>();
             if (!CharacterController) CharacterController = gameObject.GetComponent_Helper<CharacterController>();
             if (!UnitCondition) UnitCondition = gameObject.GetComponent_Helper<UnitCondition>();
-            
+            if (!UnitController) UnitController = gameObject.GetComponent_Helper<UnitController>();
+            if (!ForceReceiver) ForceReceiver = gameObject.GetComponent_Helper<ForceReceiver>();
             AnimationData.Initialize();
-        }
-
-        private void Start()
-        {
-            Uuid = GameManager.Instance.SaveData != null ? GameManager.Instance.SaveData.Uuid : Guid.NewGuid().ToString();
         }
 
         private void Reset()
@@ -38,8 +36,15 @@ namespace Character.Scripts
             if (!Animator) Animator = gameObject.GetComponentInChildren_Helper<Animator>();
             if (!CharacterController) CharacterController = gameObject.GetComponent_Helper<CharacterController>();
             if (!UnitCondition) UnitCondition = gameObject.GetComponent_Helper<UnitCondition>();
-            
+            if (!UnitController) UnitController = gameObject.GetComponent_Helper<UnitController>();
+            if (!ForceReceiver) ForceReceiver = gameObject.GetComponent_Helper<ForceReceiver>();
+
             AnimationData.Initialize();
+        }
+
+        private void Start()
+        {
+            Uuid = GameManager.Instance.SaveData != null ? GameManager.Instance.SaveData.Uuid : Guid.NewGuid().ToString();
         }
     }
 }

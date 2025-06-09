@@ -25,6 +25,9 @@ namespace Character.Scripts
         [field: Header("Unit Physics Settings")]
         [field: SerializeField] public float ComputeRate { get; private set; }       // AttackRate
         [field: SerializeField] public float Speed { get; private set; }             // Movement Speed
+        [field: SerializeField] public float JumpForce { get; private set; }
+        [field: SerializeField] public float WalkSpeedModifier { get; private set; }
+        [field: SerializeField] public float SprintSpeedModifier { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }   // Rotation Speed
         [field: SerializeField] public bool IsDead { get; private set; }
         
@@ -74,6 +77,9 @@ namespace Character.Scripts
 
             ComputeRate = UnitData.Stat.BaseComputeRate;
             Speed = UnitData.Stat.BaseSpeed;
+            JumpForce = UnitData.Stat.BaseJumpForce;
+            WalkSpeedModifier = UnitData.Stat.WalkSpeedModifier;
+            SprintSpeedModifier = UnitData.Stat.SprintSpeedModifier;
             RotationDamping = UnitData.Stat.BaseRotationDamping;
         }
 

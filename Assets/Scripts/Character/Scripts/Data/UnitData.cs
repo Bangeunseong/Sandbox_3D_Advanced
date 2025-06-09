@@ -23,6 +23,9 @@ namespace Character.Scripts.Data
 
         [field: SerializeField] [field: Range(0.5f, 15f)] public float BaseComputeRate { get; private set; } = 1f;
         [field: SerializeField] [field: Range(0f, 25f)] public float BaseSpeed { get; private set; } = 5f;
+        [field: SerializeField] [field: Range(0f, 25f)] public float BaseJumpForce { get; private set; } = 5f;
+        [field: SerializeField] [field: Range(0f, 2f)] public float WalkSpeedModifier { get; private set; } = 0.225f;
+        [field: SerializeField] [field: Range(0f, 2f)] public float SprintSpeedModifier { get; private set; } = 1f;
         [field: SerializeField] [field: Range(0f, 25f)] public float BaseRotationDamping { get; private set; } = 3f;
     }
     

@@ -503,6 +503,8 @@ GameObject:
   - component: {fileID: 483877018}
   - component: {fileID: 483877017}
   - component: {fileID: 483877016}
+  - component: {fileID: 483877021}
+  - component: {fileID: 483877020}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -533,6 +535,9 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 0
   <ComputeRate>k__BackingField: 0
   <Speed>k__BackingField: 0
+  <JumpForce>k__BackingField: 0
+  <WalkSpeedModifier>k__BackingField: 0
+  <SprintSpeedModifier>k__BackingField: 0
   <RotationDamping>k__BackingField: 0
   <IsDead>k__BackingField: 0
 --- !u!114 &483877017
@@ -547,10 +552,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ebc3c282764f21825bed38ecc31393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Uuid>k__BackingField: 
   <AnimationData>k__BackingField:
     groundParameterName: '@Ground'
     idleParameterName: Idle
+    walkParameterName: Walk
     runParameterName: Run
+    airParameterName: '@Air'
+    jumpParameterName: Jump
+    fallParameterName: Fall
     attackParameterName: '@Attack'
     comboAttackParameterName: ComboAttack
     comboAttackIndex: Combo
@@ -558,6 +568,8 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 7791426974582869223}
   <CharacterController>k__BackingField: {fileID: 483877018}
   <UnitCondition>k__BackingField: {fileID: 483877016}
+  <UnitController>k__BackingField: {fileID: 0}
+  <ForceReceiver>k__BackingField: {fileID: 0}
 --- !u!143 &483877018
 CharacterController:
   m_ObjectHideFlags: 0
@@ -600,6 +612,32 @@ Transform:
   - {fileID: 4233552261488662173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483877020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483877015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed7743bd4ff40a3938b0a1c220ca557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
+  drag: 0.3
+--- !u!114 &483877021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483877015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df280e983b04c5089d3f2aac0bd9976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

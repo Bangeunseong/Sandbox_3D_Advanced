@@ -4,10 +4,10 @@
   "Level": 1,
   "Experience": 0,
   "LifeSpan": 100.0,
-  "MaxLifeSpan": 350.0,
-  "ComputeForce": 995.0,
-  "ComputeSpeed": 955.0,
-  "Accuracy": 383.0,
+  "MaxLifeSpan": 315.0,
+  "ComputeForce": 1275.0,
+  "ComputeSpeed": 1125.0,
+  "Accuracy": 583.0,
   "ItemSlots": [
     {
       "ItemId": 10,
@@ -36,8 +36,8 @@
     {
       "ItemId": 30,
       "Index": 3,
-      "IsEquipped": true,
-      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "IsEquipped": false,
+      "OwnerId": null,
       "Quantity": 1,
       "MaxStackCount": 1
     },
@@ -58,6 +58,38 @@
       "MaxStackCount": 1
     },
     {
+      "ItemId": 32,
+      "Index": 6,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 10,
+      "Index": 7,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 31,
+      "Index": 8,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 32,
+      "Index": 9,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
       "ItemId": 2,
       "Index": 10,
       "IsEquipped": false,
@@ -68,8 +100,8 @@
     {
       "ItemId": 32,
       "Index": 11,
-      "IsEquipped": false,
-      "OwnerId": null,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
       "Quantity": 1,
       "MaxStackCount": 1
     },
@@ -92,14 +124,102 @@
     {
       "ItemId": 22,
       "Index": 14,
-      "IsEquipped": true,
-      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "IsEquipped": false,
+      "OwnerId": null,
       "Quantity": 1,
       "MaxStackCount": 1
     },
     {
       "ItemId": 2,
       "Index": 15,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 10,
+      "Index": 16,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 11,
+      "Index": 17,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 20,
+      "Index": 18,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 20,
+      "Index": 19,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 22,
+      "Index": 20,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 0,
+      "Index": 21,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 30,
+      "Index": 22,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 21,
+      "Index": 23,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 30,
+      "Index": 24,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 2,
+      "Index": 25,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 21,
+      "Index": 26,
       "IsEquipped": false,
       "OwnerId": null,
       "Quantity": 1,
