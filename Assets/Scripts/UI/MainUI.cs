@@ -189,8 +189,18 @@ namespace UI
 
         public void SortItemSlots()
         {
-            var sorted = ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
-                .ThenByDescending(slot => slot.IsEquipped).ToList();
+            var sorted = UIManager.SortingType switch
+            {
+                SortingType.Default => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                    .ThenByDescending(slot => slot.IsEquipped).ToList(),
+                SortingType.Rarity => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                    .ThenByDescending(slot => slot.IsEquipped)
+                    .ThenByDescending(slot => slot.ItemInfo?.Rarity).ToList(),
+                SortingType.Price => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                    .ThenByDescending(slot => slot.IsEquipped)
+                    .ThenByDescending(slot => slot.ItemInfo?.Price).ToList(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
             for (var i = 0; i < sorted.Count; i++)
             {
                 sorted[i].transform.SetSiblingIndex(i);

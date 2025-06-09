@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Manager.Global;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -20,8 +20,8 @@ namespace Manager.InGame
         }
         
         public HardwareItemData GetHardWareItem(int id) => ItemTable.GetHardWareItem(id);
-        public HardwareItemData GetHardWareItem(string name) => ItemTable.GetHardWareItem(name);
+        public HardwareItemData GetHardWareItem(string itemName) => ItemTable.GetHardWareItem(itemName);
         public SoftwareItemData GetSoftWareItem(int id) => ItemTable.GetSoftWareItem(id);
-        public SoftwareItemData GetSoftWareItem(string name) => ItemTable.GetSoftWareItem(name);
+        public SoftwareItemData GetSoftWareItem(string itemName) => ItemTable.GetSoftWareItem(itemName);
     }
 }

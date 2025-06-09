@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Manager.Global;
-using UnityEditor;
+﻿using Manager.Global;
 using UnityEngine;
 using UnityEngine.UI;
 

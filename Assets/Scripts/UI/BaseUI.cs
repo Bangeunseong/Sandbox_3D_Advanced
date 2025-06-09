@@ -3,14 +3,6 @@ using UnityEngine;
 
 namespace UI
 {
-    public enum CurrentScene
-    {
-        Intro,
-        Loading,
-        Main,
-        Option,
-    }
-    
     public abstract class BaseUI : MonoBehaviour
     {
         protected UIManager UIManager;

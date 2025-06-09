@@ -5,6 +5,21 @@ using Utils;
 
 namespace Manager.Global
 {
+    public enum CurrentScene
+    {
+        Intro,
+        Loading,
+        Main,
+        Option,
+    }
+
+    public enum SortingType
+    {
+        Default,
+        Rarity,
+        Price,
+    }
+    
     public class UIManager : MonoBehaviour
     {
         [field: Header("UI Panels")]
@@ -14,6 +29,9 @@ namespace Manager.Global
         
         // Fields
         private CurrentScene currentState;
+        
+        // Properties
+        public SortingType SortingType { get; private set; } = SortingType.Default;
         
         // Singleton
         public static UIManager Instance { get; private set; }
