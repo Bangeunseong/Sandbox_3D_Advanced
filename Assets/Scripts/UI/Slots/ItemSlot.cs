@@ -1,5 +1,4 @@
 ﻿using System;
-using Character;
 using Character.Scripts;
 using Character.Scripts.Data;
 using Item.Scripts;

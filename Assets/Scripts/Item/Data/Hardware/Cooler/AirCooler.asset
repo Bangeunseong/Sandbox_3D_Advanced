@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AirCooler
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 0
     <ItemName>k__BackingField: "\uACF5\uB7AD \uCFE8\uB7EC"
     <Description>k__BackingField: "\uACF5\uB7AD \uBC29\uC2DD\uC73C\uB85C Cpu\uC758
       \uC628\uB3C4\uB97C \uB0AE\uCDB0\uC900\uB2E4."

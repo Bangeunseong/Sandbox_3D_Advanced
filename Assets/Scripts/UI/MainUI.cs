@@ -33,6 +33,9 @@ namespace UI
         [SerializeField] private GameObject inventoryUISlotPrefab;
         [SerializeField] private Transform inventoryUIContentPanel;
         [SerializeField] private TextMeshProUGUI occupyCountText;
+        [SerializeField] private Button defaultSort;
+        [SerializeField] private Button raritySort;
+        [SerializeField] private Button priceSort;
         [field: SerializeField] public int MaxInventorySlot { get; private set; } = 120;
         [field: SerializeField] public List<ItemSlot> ItemSlots { get; private set; } = new();
 
@@ -92,6 +95,10 @@ namespace UI
             equipBtn.onClick.AddListener(OnClickEquipBtn);
             unequipBtn.onClick.AddListener(OnClickUnequipBtn);
             dropBtn.onClick.AddListener(OnClickDropBtn);
+            
+            defaultSort.onClick.AddListener(OnClickDefaultSortBtn);
+            raritySort.onClick.AddListener(OnClickRaritySortBtn);
+            priceSort.onClick.AddListener(OnClickPriceSortBtn);
         }
 
         /// <summary>
@@ -187,16 +194,20 @@ namespace UI
             occupyCountText.text = $"<color=orange>{GetItemCount()}</color> <color=#7B7B7B>/{MaxInventorySlot}</color>";
         }
 
+        /// <summary>
+        /// 인벤토리 UI 정렬 함수
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SortItemSlots()
         {
             var sorted = UIManager.SortingType switch
             {
-                SortingType.Default => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                SortingType.Default => ItemSlots.OrderByDescending(slot => slot.ItemId != -1)
                     .ThenByDescending(slot => slot.IsEquipped).ToList(),
-                SortingType.Rarity => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                SortingType.Rarity => ItemSlots.OrderByDescending(slot => slot.ItemId != -1)
                     .ThenByDescending(slot => slot.IsEquipped)
                     .ThenByDescending(slot => slot.ItemInfo?.Rarity).ToList(),
-                SortingType.Price => ItemSlots.OrderByDescending(slot => slot.ItemInfo != null)
+                SortingType.Price => ItemSlots.OrderByDescending(slot => slot.ItemId != -1)
                     .ThenByDescending(slot => slot.IsEquipped)
                     .ThenByDescending(slot => slot.ItemInfo?.Price).ToList(),
                 _ => throw new ArgumentOutOfRangeException()
@@ -347,6 +358,27 @@ namespace UI
         {
             InventoryManager.Instance.OnItemRemoved();
             UpdateOccupyCountText();
+        }
+
+        private void OnClickDefaultSortBtn()
+        {
+            if (UIManager.SortingType == SortingType.Default) return;
+            UIManager.ChangeSortType(SortingType.Default);
+            SortItemSlots();
+        }
+
+        private void OnClickRaritySortBtn()
+        {
+            if (UIManager.SortingType == SortingType.Rarity) return; 
+            UIManager.ChangeSortType(SortingType.Rarity);
+            SortItemSlots();
+        }
+
+        private void OnClickPriceSortBtn()
+        {
+            if (UIManager.SortingType == SortingType.Price) return;
+            UIManager.ChangeSortType(SortingType.Price);
+            SortItemSlots();
         }
 
         private void OnClickBackBtn()

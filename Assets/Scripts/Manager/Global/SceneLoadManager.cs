@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
-using UI;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

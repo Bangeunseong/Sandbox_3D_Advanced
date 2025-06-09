@@ -1,6 +1,4 @@
-﻿using System;
-using Character;
-using Character.Scripts;
+﻿using Character.Scripts;
 using UnityEngine;
 
 namespace Manager.InGame

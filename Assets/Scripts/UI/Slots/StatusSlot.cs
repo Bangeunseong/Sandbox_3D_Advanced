@@ -1,5 +1,4 @@
-﻿using System;
-using Character.Scripts.Data;
+﻿using Character.Scripts.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

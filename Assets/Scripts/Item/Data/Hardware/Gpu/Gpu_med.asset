@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gpu_med
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 22
     <ItemName>k__BackingField: RX 9070XT
     <Description>k__BackingField: "AMD\uC5D0\uC11C \uC81C\uC791\uD55C Gpu\uB85C 4096\uAC1C\uC758
       \uC2A4\uD2B8\uB9BC \uD504\uB85C\uC138\uC11C\uB4E4\uC744 \uAC00\uC9C0\uACE0

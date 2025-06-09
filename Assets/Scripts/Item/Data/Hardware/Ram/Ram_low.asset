@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ram_low
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 31
     <ItemName>k__BackingField: "8GB \uB7A8"
     <Description>k__BackingField: "\uC0BC\uC131\uC5D0\uC11C \uC81C\uC791\uD55C DDR5
       \uB7A8\uC73C\uB85C 5600Mhz\uC758 \uD074\uB7ED\uC18D\uB3C4\uB97C \uAC00\uC9C0\uACE0

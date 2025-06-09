@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cpu_med
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 12
     <ItemName>k__BackingField: Ryzen 7800X3D
     <Description>k__BackingField: "AMD\uC5D0\uC11C \uCD9C\uC2DC\uD55C Cpu\uC774\uB2E4.
       8\uCF54\uC5B4 16\uC4F0\uB808\uB4DC\uB85C \uAD6C\uC131\uB418\uC5B4 \uC788\uC73C\uBA70

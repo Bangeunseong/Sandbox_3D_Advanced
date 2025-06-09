@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Character.Scripts.Data;
-using Item.Scripts;
-using UI.Slots;
 
 namespace Manager.Global.DTO
 {

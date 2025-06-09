@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cpu_low
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 11
     <ItemName>k__BackingField: Intel 12100F
     <Description>k__BackingField: "Intel\uC5D0\uC11C \uCD9C\uC2DC\uD55C Cpu\uB85C
       4\uCF54\uC5B4 8\uC4F0\uB808\uB4DC\uB85C \uAD6C\uC131\uB418\uC5B4 \uC788\uB2E4.

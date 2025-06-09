@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cpu_high
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 10
     <ItemName>k__BackingField: Ryzen 9950X3D
     <Description>k__BackingField: "AMD\uC5D0\uC11C \uCD9C\uC2DC\uD55C \uCD5C\uC2E0\uD615
       Cpu\uC774\uB2E4. 16\uCF54\uC5B4 32\uC4F0\uB808\uB4DC\uB97C \uAC00\uC9C0\uACE0

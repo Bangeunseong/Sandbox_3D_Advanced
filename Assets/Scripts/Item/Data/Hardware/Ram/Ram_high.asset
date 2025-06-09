@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ram_high
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 30
     <ItemName>k__BackingField: "32GB \uB7A8"
     <Description>k__BackingField: "SK Hynix\uC5D0\uC11C \uC81C\uC791\uD55C DDR% \uB7A8\uC73C\uB85C
       6000Mhz\uC758 \uD074\uB7ED\uC18D\uB3C4\uB97C \uAC00\uC9C4\uB2E4. \uBC29\uC5F4\uD310\uC744

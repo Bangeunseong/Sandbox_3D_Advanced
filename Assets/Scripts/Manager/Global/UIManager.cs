@@ -1,5 +1,4 @@
-﻿using System;
-using UI;
+﻿using UI;
 using UnityEngine;
 using Utils;
 
@@ -10,7 +9,6 @@ namespace Manager.Global
         Intro,
         Loading,
         Main,
-        Option,
     }
 
     public enum SortingType
@@ -72,6 +70,11 @@ namespace Manager.Global
             IntroUI.SetActive(currentState);
             LoadingUI.SetActive(currentState);
             MainUI.SetActive(currentState);
+        }
+
+        public void ChangeSortType(SortingType type)
+        {
+            SortingType = type;
         }
     }
 }

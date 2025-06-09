@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gpu_low
   m_EditorClassIdentifier: 
   <HardwareItemInfo>k__BackingField:
+    <ItemId>k__BackingField: 21
     <ItemName>k__BackingField: RTX 5060
     <Description>k__BackingField: "Nvidia\uC5D0\uC11C \uC81C\uC791\uD55C Gpu\uB85C
       3840\uAC1C\uC758 \uCFE0\uB2E4 \uD504\uB85C\uC138\uC11C\uB97C \uAC00\uC9C0\uACE0
