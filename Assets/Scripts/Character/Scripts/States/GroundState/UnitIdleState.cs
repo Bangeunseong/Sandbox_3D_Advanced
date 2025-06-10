@@ -35,5 +35,11 @@ namespace Character.Scripts.States.GroundState
             if (StateMachine.MovementDirection == Vector2.zero) return;
             StateMachine.ChangeState(StateMachine.WalkState);
         }
+
+        protected override void OnDanceStarted(InputAction.CallbackContext context)
+        {
+            base.OnDanceStarted(context); 
+            StateMachine.ChangeState(StateMachine.DanceState);
+        }
     }
 }

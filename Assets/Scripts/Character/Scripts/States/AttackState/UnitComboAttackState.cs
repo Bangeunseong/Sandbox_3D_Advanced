@@ -88,7 +88,7 @@ namespace Character.Scripts.States.AttackState
             StateMachine.Unit.ForceReceiver.Reset();
 
             // 앞으로 나가면서 공격 모션을 위한 힘 가중
-            StateMachine.Unit.ForceReceiver.AddForce(StateMachine.Unit.transform.forward * attackInfoData.Force);
+            StateMachine.Unit.ForceReceiver.AddForce(StateMachine.Unit.transform.forward * (StateMachine.ComboIndex > 1 ? attackInfoData.Force : attackInfoData.Force / 2f));
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Character.Scripts.States
         [field: SerializeField] public UnitCrouchWalkState CrouchWalkState { get; private set; }
         [field: SerializeField] public UnitWalkState WalkState { get; private set; }
         [field: SerializeField] public UnitRunState RunState { get; private set; }
+        [field: SerializeField] public UnitDanceState DanceState { get; private set; }
         [field: SerializeField] public UnitJumpState JumpState { get; private set; }
         [field: SerializeField] public UnitFallState FallState { get; private set; }
         [field: SerializeField] public UnitComboAttackState ComboAttackState { get; private set; }
@@ -42,6 +43,7 @@ namespace Character.Scripts.States
             CrouchWalkState = new UnitCrouchWalkState(this);
             WalkState = new UnitWalkState(this);
             RunState = new UnitRunState(this);
+            DanceState = new UnitDanceState(this);
             JumpState = new UnitJumpState(this);
             FallState = new UnitFallState(this);
             ComboAttackState = new UnitComboAttackState(this);

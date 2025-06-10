@@ -1,4 +1,5 @@
 ﻿using Character.Scripts.Data;
+using Character.Scripts.States.GroundState;
 using Manager.Global;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -58,8 +59,11 @@ namespace Character.Scripts.States
         private void ReadMovementInput()
         {
             if (!UnitCondition.IsPlayerHasControl) { StateMachine.MovementDirection = Vector2.zero; return; }
+            
             StateMachine.MovementDirection =
                 StateMachine.Unit.UnitController.PlayerActions.Move.ReadValue<Vector2>();
+            if (StateMachine.MovementDirection == Vector2.zero) return;
+            if (StateMachine.CurrentState is UnitDanceState) StateMachine.ChangeState(StateMachine.IdleState);
         }
         
         private void Move()
@@ -125,6 +129,7 @@ namespace Character.Scripts.States
             var unitController = StateMachine.Unit.UnitController;
             unitController.PlayerActions.Move.canceled += OnMoveCanceled;
             unitController.PlayerActions.Sprint.started += OnRunStarted;
+            unitController.PlayerActions.Dance.started += OnDanceStarted;
             unitController.PlayerActions.Jump.started += OnJumpStarted;
             unitController.PlayerActions.Crouch.started += OnCrouchStarted;
             unitController.PlayerActions.Menu.started += OnMenuStarted;
@@ -137,6 +142,7 @@ namespace Character.Scripts.States
             var unitController = StateMachine.Unit.UnitController;
             unitController.PlayerActions.Move.canceled -= OnMoveCanceled;
             unitController.PlayerActions.Sprint.started -= OnRunStarted;
+            unitController.PlayerActions.Dance.started -= OnDanceStarted;
             unitController.PlayerActions.Jump.started -= OnJumpStarted;
             unitController.PlayerActions.Crouch.started -= OnCrouchStarted;
             unitController.PlayerActions.Menu.started -= OnMenuStarted;
@@ -180,6 +186,11 @@ namespace Character.Scripts.States
             UnitCondition.IsPlayerHasControl = !UnitCondition.IsPlayerHasControl;
             Cursor.lockState = UnitCondition.IsPlayerHasControl ? CursorLockMode.Locked : CursorLockMode.None;
             UIManager.Instance.MainUI.ToggleMainMenuUI();
+        }
+
+        protected virtual void OnDanceStarted(InputAction.CallbackContext context)
+        {
+            
         }
     }
 }

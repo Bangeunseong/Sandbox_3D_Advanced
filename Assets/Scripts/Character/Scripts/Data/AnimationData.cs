@@ -12,7 +12,8 @@ namespace Character.Scripts.Data
         [SerializeField] private string crouchWalkParameterName = "CrouchWalk";
         [SerializeField] private string walkParameterName = "Walk";
         [SerializeField] private string runParameterName = "Run";
-
+        [SerializeField] private string danceParameterName = "Dance";
+        
         [Header("Animation Parameters on air")]
         [SerializeField] private string airParameterName = "@Air";
         [SerializeField] private string jumpParameterName = "Jump";
@@ -33,6 +34,7 @@ namespace Character.Scripts.Data
         public int CrouchWalkParameterHash { get; private set; }
         public int WalkParameterHash { get; private set; }
         public int RunParameterHash { get; private set; }
+        public int DanceParameterHash { get; private set; }
         public int AirParameterHash { get; private set; }
         public int JumpParameterHash { get; private set; }
         public int FallParameterHash { get; private set; }
@@ -49,6 +51,7 @@ namespace Character.Scripts.Data
             CrouchWalkParameterHash = Animator.StringToHash(crouchWalkParameterName);
             WalkParameterHash = Animator.StringToHash(walkParameterName);
             RunParameterHash = Animator.StringToHash(runParameterName);
+            DanceParameterHash = Animator.StringToHash(danceParameterName);
 
             AirParameterHash = Animator.StringToHash(airParameterName);
             JumpParameterHash = Animator.StringToHash(jumpParameterName);

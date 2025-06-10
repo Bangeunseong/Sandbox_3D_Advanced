@@ -49,6 +49,11 @@ namespace Character.Scripts
             InitializeStat(GameManager.Instance.SaveData);
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.R)) OnTakeExp(10);
+        }
+
         private void InitializeStat(SaveData data)
         {
             if (data == null)
@@ -80,6 +85,8 @@ namespace Character.Scripts
                     uiManager.MainUI.UpdateStatValueByType(type, value);
                 }
             }
+            
+            uiManager.MainUI.Initialize_GameUI(this);
 
             ComputeRate = UnitData.Stat.BaseComputeRate;
             Speed = UnitData.Stat.BaseSpeed;
@@ -98,31 +105,46 @@ namespace Character.Scripts
             {
                 case StatType.LifeSpan: 
                     MaxLifeSpan += value; LifeSpan = Mathf.Min(LifeSpan, MaxLifeSpan);
-                    uiManager.MainUI.StatusSlots[type].UpdateValue(MaxLifeSpan);
+                    uiManager.MainUI.UpdateStatValueByType(type, MaxLifeSpan);
+                    uiManager.MainUI.UpdateCurrentHp(LifeSpan, MaxLifeSpan);
                     break;
                 case StatType.ComputeForce: ComputeForce += value; 
-                    uiManager.MainUI.StatusSlots[type].UpdateValue(ComputeForce);
+                    uiManager.MainUI.UpdateStatValueByType(type, ComputeForce);
                     break;
                 case StatType.ComputeSpeed: ComputeSpeed += value; 
-                    uiManager.MainUI.StatusSlots[type].UpdateValue(ComputeSpeed);
+                    uiManager.MainUI.UpdateStatValueByType(type, ComputeSpeed);
                     break;
                 case StatType.Accuracy: Accuracy += value; 
-                    uiManager.MainUI.StatusSlots[type].UpdateValue(Accuracy);
+                    uiManager.MainUI.UpdateStatValueByType(type, Accuracy);
                     break;
                 default: throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
             
-            uiManager.MainUI.StatusSlots[type].UpdateExtra(originExtraValue + value);
+            uiManager.MainUI.UpdateStatExtraByType(type, originExtraValue + value);
         }
 
         public void OnTakeDamage(int damage)
         {
             if (IsDead) return;
             LifeSpan -= damage;
-            // Update GameUI LifeSpan
+            uiManager.MainUI.UpdateCurrentHp(LifeSpan, MaxLifeSpan);
             OnDamage?.Invoke();
 
             if (LifeSpan <= 0) { OnDead(); }
+        }
+
+        public void OnTakeExp(int exp)
+        {
+            Experience += exp;
+            if(Experience >= Level * 120) { OnLevelUp(); return; }
+            uiManager.MainUI.UpdateExp(Experience, Level);
+        }
+
+        private void OnLevelUp()
+        {
+            Experience -= Level * 120;
+            Level++;
+            uiManager.MainUI.UpdateLevel(Level, Experience);
         }
 
         private void OnDead()

@@ -1,12 +1,12 @@
 {
   "Uuid": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
   "SelectedCharacter": "ChatGPT",
-  "Level": 1,
-  "Experience": 0,
+  "Level": 4,
+  "Experience": 110,
   "LifeSpan": 100.0,
-  "MaxLifeSpan": 315.0,
+  "MaxLifeSpan": 350.0,
   "ComputeForce": 1275.0,
-  "ComputeSpeed": 1125.0,
+  "ComputeSpeed": 1205.0,
   "Accuracy": 583.0,
   "ItemSlots": [
     {
@@ -36,8 +36,8 @@
     {
       "ItemId": 30,
       "Index": 3,
-      "IsEquipped": false,
-      "OwnerId": null,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
       "Quantity": 1,
       "MaxStackCount": 1
     },
@@ -100,8 +100,8 @@
     {
       "ItemId": 32,
       "Index": 11,
-      "IsEquipped": true,
-      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "IsEquipped": false,
+      "OwnerId": null,
       "Quantity": 1,
       "MaxStackCount": 1
     },
@@ -156,16 +156,16 @@
     {
       "ItemId": 20,
       "Index": 18,
-      "IsEquipped": true,
-      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
+      "IsEquipped": false,
+      "OwnerId": null,
       "Quantity": 1,
       "MaxStackCount": 1
     },
     {
       "ItemId": 20,
       "Index": 19,
-      "IsEquipped": false,
-      "OwnerId": null,
+      "IsEquipped": true,
+      "OwnerId": "867c7ab1-4407-4fa8-85d2-4ab6e1d0beb6",
       "Quantity": 1,
       "MaxStackCount": 1
     },
@@ -220,6 +220,30 @@
     {
       "ItemId": 21,
       "Index": 26,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 2,
+      "Index": 27,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 31,
+      "Index": 28,
+      "IsEquipped": false,
+      "OwnerId": null,
+      "Quantity": 1,
+      "MaxStackCount": 1
+    },
+    {
+      "ItemId": 31,
+      "Index": 29,
       "IsEquipped": false,
       "OwnerId": null,
       "Quantity": 1,

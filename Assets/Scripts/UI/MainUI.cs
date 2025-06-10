@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using Character.Scripts;
 using Character.Scripts.Data;
 using Item.Scripts;
 using Manager.Global;
@@ -17,6 +18,15 @@ namespace UI
 {
     public class MainUI : BaseUI
     {
+        [field: Header("Game UI")] 
+        [SerializeField] private GameObject gameUI;
+        
+        [field: Header("Current Status UI")]
+        [SerializeField] private TextMeshProUGUI level;
+        [SerializeField] private Slider exp;
+        [SerializeField] private TextMeshProUGUI currentHp;
+        [SerializeField] private Slider currentHpSlider;
+        
         [field: Header("MainMenu UI")]
         [SerializeField] private GameObject mainMenuUI;
 
@@ -166,6 +176,31 @@ namespace UI
             }
         }
 
+        public void Initialize_GameUI(UnitCondition condition)
+        {
+            level.text = condition.Level.ToString("D2");
+            exp.value = (float)condition.Experience / condition.Level * 120;
+            currentHp.text = $"{Mathf.CeilToInt(condition.LifeSpan)}/{Mathf.CeilToInt(condition.MaxLifeSpan)}";
+            currentHpSlider.value = condition.LifeSpan / condition.MaxLifeSpan;
+        }
+
+        public void UpdateCurrentHp(float current, float max)
+        {
+            currentHp.text = $"{Mathf.CeilToInt(current)}/{Mathf.CeilToInt(max)}";
+            currentHpSlider.value = current / max;
+        }
+
+        public void UpdateExp(int experience, int currentLevel)
+        {
+            exp.value = (float)experience / (currentLevel * 120);
+        }
+
+        public void UpdateLevel(int currentLevel, int experience = 0)
+        {
+            level.text = currentLevel.ToString("D2");
+            exp.value = (float)experience / (currentLevel * 120);
+        }
+
         /// <summary>
         /// 아이템 효과 타입에 따라 Value 업데이트 (실제 유닛의 Stat Value)
         /// </summary>
@@ -220,6 +255,7 @@ namespace UI
 
         public void ToggleMainMenuUI()
         {
+            gameUI.SetActive(!gameUI.activeInHierarchy);
             mainMenuUI.SetActive(!mainMenuUI.activeInHierarchy);
         }
 
