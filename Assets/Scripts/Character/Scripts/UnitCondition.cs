@@ -67,6 +67,8 @@ namespace Character.Scripts
             }
             else
             {
+                Level = data.Level;
+                Experience = data.Experience;
                 MaxLifeSpan = data.MaxLifeSpan;
                 LifeSpan = data.LifeSpan;
                 ComputeForce = data.ComputeForce;
@@ -145,6 +147,7 @@ namespace Character.Scripts
             Experience -= Level * 120;
             Level++;
             uiManager.MainUI.UpdateLevel(Level, Experience);
+            _ = GameManager.Instance.TrySaveData();
         }
 
         private void OnDead()

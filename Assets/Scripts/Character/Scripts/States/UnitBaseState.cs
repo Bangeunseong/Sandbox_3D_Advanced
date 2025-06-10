@@ -1,5 +1,4 @@
-﻿using Character.Scripts.Data;
-using Character.Scripts.States.GroundState;
+﻿using Character.Scripts.States.GroundState;
 using Manager.Global;
 using UnityEngine;
 using UnityEngine.InputSystem;
