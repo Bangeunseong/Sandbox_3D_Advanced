@@ -86,8 +86,9 @@ namespace Character.Scripts
                     };
                     uiManager.MainUI.UpdateStatValueByType(type, value);
                 }
+                uiManager.MainUI.UpdateLevel(Level, Experience);
             }
-            
+            uiManager.MainUI.Initialize_NameAndDesc(UnitData.Stat);
             uiManager.MainUI.Initialize_GameUI(this);
 
             ComputeRate = UnitData.Stat.BaseComputeRate;

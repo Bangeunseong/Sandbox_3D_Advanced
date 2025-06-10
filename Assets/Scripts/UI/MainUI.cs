@@ -31,6 +31,10 @@ namespace UI
         [SerializeField] private GameObject mainMenuUI;
 
         [field: Header("Status UI")] 
+        [SerializeField] private TextMeshProUGUI unitName;
+        [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private TextMeshProUGUI levelMain;
+        [SerializeField] private Slider expMain;
         [SerializeField] private GameObject statusUI;
         [SerializeField] private GameObject statusUISlotPrefab;
         [SerializeField] private Transform statusUIContentPanel;
@@ -176,6 +180,16 @@ namespace UI
             }
         }
 
+        /// <summary>
+        /// 캐릭터 이름과 설명 초기화 함수
+        /// </summary>
+        /// <param name="stat"></param>
+        public void Initialize_NameAndDesc(UnitStat stat)
+        {
+            unitName.text = stat.Name;
+            description.text = stat.Description;
+        }
+
         public void Initialize_GameUI(UnitCondition condition)
         {
             level.text = condition.Level.ToString("D2");
@@ -192,6 +206,7 @@ namespace UI
 
         public void UpdateExp(int experience, int currentLevel)
         {
+            expMain.value = (float)experience / (currentLevel * 120);
             exp.value = (float)experience / (currentLevel * 120);
         }
 
@@ -199,6 +214,8 @@ namespace UI
         {
             level.text = currentLevel.ToString("D2");
             exp.value = (float)experience / (currentLevel * 120);
+            levelMain.text = currentLevel.ToString("D2");
+            expMain.value = (float)experience / (currentLevel * 120);
         }
 
         /// <summary>

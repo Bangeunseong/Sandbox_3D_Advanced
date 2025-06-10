@@ -16,6 +16,7 @@ namespace Character.Scripts.Data
     {
         [field: Header("Default Stat. Settings")]
         [field: SerializeField] public string Name { get; private set; } = "Chad";
+        [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] [field: Range(0f, 2000f)] public float BaseLifeSpan { get; private set; } = 100f;
         [field: SerializeField] [field: Range(0f, 1500f)] public float BaseComputeForce { get; private set; } = 25f; 
         [field: SerializeField] [field: Range(0f, 1500f)] public float BaseComputeSpeed { get; private set; } = 15f; 
