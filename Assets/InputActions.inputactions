@@ -1,5 +1,5 @@
 {
-    "name": "InputAction",
+    "name": "InputActions",
     "maps": [
         {
             "name": "Player",
@@ -45,6 +45,24 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "2135097a-4cd6-40fc-bf65-eb673967c29c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "97d6fdba-e37b-4118-b1a7-0f0bdc89a034",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "c7d4bbf3-ffa1-4244-beb5-44f4b3ba9ef8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -148,6 +166,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1708d666-9f0d-4d60-9fa4-4c77e44dd6b5",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17c1f62a-6f92-4767-9136-df8ae6322c21",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

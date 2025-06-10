@@ -8,6 +8,8 @@ namespace Character.Scripts.Data
         [Header("Animation Parameters on ground")]
         [SerializeField] private string groundParameterName = "@Ground";
         [SerializeField] private string idleParameterName = "Idle";
+        [SerializeField] private string crouchParameterName = "Crouch";
+        [SerializeField] private string crouchWalkParameterName = "CrouchWalk";
         [SerializeField] private string walkParameterName = "Walk";
         [SerializeField] private string runParameterName = "Run";
 
@@ -27,6 +29,8 @@ namespace Character.Scripts.Data
         // Properties of parameter hash
         public int GroundParameterHash { get; private set; }
         public int IdleParameterHash { get; private set; }
+        public int CrouchParameterHash { get; private set; }
+        public int CrouchWalkParameterHash { get; private set; }
         public int WalkParameterHash { get; private set; }
         public int RunParameterHash { get; private set; }
         public int AirParameterHash { get; private set; }
@@ -41,6 +45,8 @@ namespace Character.Scripts.Data
         {
             GroundParameterHash = Animator.StringToHash(groundParameterName);
             IdleParameterHash = Animator.StringToHash(idleParameterName);
+            CrouchParameterHash = Animator.StringToHash(crouchParameterName);
+            CrouchWalkParameterHash = Animator.StringToHash(crouchWalkParameterName);
             WalkParameterHash = Animator.StringToHash(walkParameterName);
             RunParameterHash = Animator.StringToHash(runParameterName);
 

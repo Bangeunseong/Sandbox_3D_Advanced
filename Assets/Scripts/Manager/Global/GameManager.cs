@@ -50,7 +50,7 @@ namespace Manager.Global
                 Accuracy = unitData.Accuracy, ItemSlots = inventoryData
             };
             
-            var json = JsonConvert.SerializeObject(save, Newtonsoft.Json.Formatting.Indented);
+            var json = JsonConvert.SerializeObject(save, Formatting.Indented);
             // Debug.Log(json);
             await File.WriteAllTextAsync(SaveFilePath, json);
         }

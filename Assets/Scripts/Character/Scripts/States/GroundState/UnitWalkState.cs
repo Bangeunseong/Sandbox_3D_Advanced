@@ -22,6 +22,12 @@ namespace Character.Scripts.States.GroundState
             StopAnimation(StateMachine.Unit.AnimationData.WalkParameterHash);
         }
 
+        protected override void OnCrouchStarted(InputAction.CallbackContext context)
+        {
+            base.OnCrouchStarted(context);
+            StateMachine.ChangeState(StateMachine.CrouchState);
+        }
+
         protected override void OnRunStarted(InputAction.CallbackContext context)
         {
             base.OnRunStarted(context);

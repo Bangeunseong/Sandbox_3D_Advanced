@@ -46,7 +46,7 @@ namespace Manager.InGame
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A)) AddItem();
+            if (Input.GetKeyDown(KeyCode.E)) AddItem();
             
         }
 

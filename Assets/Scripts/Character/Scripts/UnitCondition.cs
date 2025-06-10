@@ -26,20 +26,26 @@ namespace Character.Scripts
         [field: SerializeField] public float ComputeRate { get; private set; }       // AttackRate
         [field: SerializeField] public float Speed { get; private set; }             // Movement Speed
         [field: SerializeField] public float JumpForce { get; private set; }
+        [field: SerializeField] public float CrouchSpeedModifier { get; private set; }
         [field: SerializeField] public float WalkSpeedModifier { get; private set; }
         [field: SerializeField] public float SprintSpeedModifier { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }   // Rotation Speed
         [field: SerializeField] public bool IsDead { get; private set; }
         
+        // Fields
         private UIManager uiManager;
         
-        [CanBeNull] public event Action OnDamage, OnDeath;
+        // Properties
+        [field: SerializeField] public bool IsPlayerHasControl { get; set; } = true;
         
-        private void Start()
+        // Action events
+        [CanBeNull] public event Action OnDamage, OnDeath;
+
+        private void Awake()
         {
             uiManager = UIManager.Instance;
             UnitData = ResourceManager.Instance.GetResourceByName<UnitData>(ResourceManager.CharacterPrefix +
-                                                                            GameManager.Instance.SelectedCharacter);
+                                                                                        GameManager.Instance.SelectedCharacter);
             InitializeStat(GameManager.Instance.SaveData);
         }
 
@@ -78,6 +84,7 @@ namespace Character.Scripts
             ComputeRate = UnitData.Stat.BaseComputeRate;
             Speed = UnitData.Stat.BaseSpeed;
             JumpForce = UnitData.Stat.BaseJumpForce;
+            CrouchSpeedModifier = UnitData.Stat.CrouchSpeedModifier;
             WalkSpeedModifier = UnitData.Stat.WalkSpeedModifier;
             SprintSpeedModifier = UnitData.Stat.SprintSpeedModifier;
             RotationDamping = UnitData.Stat.BaseRotationDamping;

@@ -1,4 +1,5 @@
 ﻿using Character.Scripts.Data;
+using Manager.Global;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -29,6 +30,7 @@ namespace Character.Scripts.States
 
         public virtual void Update()
         {
+            if (!UnitCondition.IsPlayerHasControl) return;
             Move();
         }
 
@@ -55,6 +57,7 @@ namespace Character.Scripts.States
         
         private void ReadMovementInput()
         {
+            if (!UnitCondition.IsPlayerHasControl) { StateMachine.MovementDirection = Vector2.zero; return; }
             StateMachine.MovementDirection =
                 StateMachine.Unit.UnitController.PlayerActions.Move.ReadValue<Vector2>();
         }
@@ -119,22 +122,26 @@ namespace Character.Scripts.States
 
         protected virtual void AddInputActionCallbacks()
         {
-            var playerController = StateMachine.Unit.UnitController;
-            playerController.PlayerActions.Move.canceled += OnMoveCanceled;
-            playerController.PlayerActions.Sprint.started += OnRunStarted;
-            playerController.PlayerActions.Jump.started += OnJumpStarted;
-            playerController.PlayerActions.Attack.performed += OnAttackPerformed;
-            playerController.PlayerActions.Attack.canceled += OnAttackCanceled;
+            var unitController = StateMachine.Unit.UnitController;
+            unitController.PlayerActions.Move.canceled += OnMoveCanceled;
+            unitController.PlayerActions.Sprint.started += OnRunStarted;
+            unitController.PlayerActions.Jump.started += OnJumpStarted;
+            unitController.PlayerActions.Crouch.started += OnCrouchStarted;
+            unitController.PlayerActions.Menu.started += OnMenuStarted;
+            unitController.PlayerActions.Attack.performed += OnAttackPerformed;
+            unitController.PlayerActions.Attack.canceled += OnAttackCanceled;
         }
         
         protected virtual void RemoveInputActionCallbacks()
         {
-            var playerController = StateMachine.Unit.UnitController;
-            playerController.PlayerActions.Move.canceled -= OnMoveCanceled;
-            playerController.PlayerActions.Sprint.started -= OnRunStarted;
-            playerController.PlayerActions.Jump.started -= OnJumpStarted;
-            playerController.PlayerActions.Attack.performed -= OnAttackPerformed;
-            playerController.PlayerActions.Attack.canceled -= OnAttackCanceled;
+            var unitController = StateMachine.Unit.UnitController;
+            unitController.PlayerActions.Move.canceled -= OnMoveCanceled;
+            unitController.PlayerActions.Sprint.started -= OnRunStarted;
+            unitController.PlayerActions.Jump.started -= OnJumpStarted;
+            unitController.PlayerActions.Crouch.started -= OnCrouchStarted;
+            unitController.PlayerActions.Menu.started -= OnMenuStarted;
+            unitController.PlayerActions.Attack.performed -= OnAttackPerformed;
+            unitController.PlayerActions.Attack.canceled -= OnAttackCanceled;
         }
 
         protected virtual void OnMoveCanceled(InputAction.CallbackContext context)
@@ -142,18 +149,24 @@ namespace Character.Scripts.States
             
         }
 
+        protected virtual void OnCrouchStarted(InputAction.CallbackContext context)
+        {
+            if (!UnitCondition.IsPlayerHasControl) return;
+        }
+
         protected virtual void OnRunStarted(InputAction.CallbackContext context)
         {
-            
+            if (!UnitCondition.IsPlayerHasControl) return;
         }
 
         protected virtual void OnJumpStarted(InputAction.CallbackContext context)
         {
-            
+            if (!UnitCondition.IsPlayerHasControl) return;
         }
 
         protected virtual void OnAttackPerformed(InputAction.CallbackContext context)
         {
+            if (!UnitCondition.IsPlayerHasControl) return;
             StateMachine.IsAttacking = true;
         }
 
@@ -162,5 +175,11 @@ namespace Character.Scripts.States
             StateMachine.IsAttacking = false;
         }
 
+        protected virtual void OnMenuStarted(InputAction.CallbackContext context)
+        {
+            UnitCondition.IsPlayerHasControl = !UnitCondition.IsPlayerHasControl;
+            Cursor.lockState = UnitCondition.IsPlayerHasControl ? CursorLockMode.Locked : CursorLockMode.None;
+            UIManager.Instance.MainUI.ToggleMainMenuUI();
+        }
     }
 }

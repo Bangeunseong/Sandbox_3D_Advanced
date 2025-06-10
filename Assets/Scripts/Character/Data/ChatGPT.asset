@@ -20,30 +20,34 @@ MonoBehaviour:
     <BaseAccuracy>k__BackingField: 3
     <BaseComputeRate>k__BackingField: 1
     <BaseSpeed>k__BackingField: 5
+    <BaseJumpForce>k__BackingField: 5
+    <CrouchSpeedModifier>k__BackingField: 0.1
+    <WalkSpeedModifier>k__BackingField: 0.225
+    <SprintSpeedModifier>k__BackingField: 1
     <BaseRotationDamping>k__BackingField: 3
   <AttackData>k__BackingField:
     <AttackInfoList>k__BackingField:
-    - <AttackName>k__BackingField: 
-      <ComboStateIndex>k__BackingField: 0
-      <ComboTransitionTime>k__BackingField: 0
-      <ForceTransitionTime>k__BackingField: 0
-      <Force>k__BackingField: 0
+    - <AttackName>k__BackingField: NormalAttack
+      <ComboStateIndex>k__BackingField: 1
+      <ComboTransitionTime>k__BackingField: 0.2
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 1
+      Damage: 5
+      <DealingStartTransitionTime>k__BackingField: 0
+      <DealingEndTransitionTime>k__BackingField: 0
+    - <AttackName>k__BackingField: DoubleAttack
+      <ComboStateIndex>k__BackingField: 2
+      <ComboTransitionTime>k__BackingField: 0.2
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 2
       Damage: 0
       <DealingStartTransitionTime>k__BackingField: 0
       <DealingEndTransitionTime>k__BackingField: 0
-    - <AttackName>k__BackingField: 
-      <ComboStateIndex>k__BackingField: 0
-      <ComboTransitionTime>k__BackingField: 0
-      <ForceTransitionTime>k__BackingField: 0
-      <Force>k__BackingField: 0
-      Damage: 0
-      <DealingStartTransitionTime>k__BackingField: 0
-      <DealingEndTransitionTime>k__BackingField: 0
-    - <AttackName>k__BackingField: 
-      <ComboStateIndex>k__BackingField: 0
-      <ComboTransitionTime>k__BackingField: 0
-      <ForceTransitionTime>k__BackingField: 0
-      <Force>k__BackingField: 0
+    - <AttackName>k__BackingField: CrossAttack
+      <ComboStateIndex>k__BackingField: -1
+      <ComboTransitionTime>k__BackingField: 0.2
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 3
       Damage: 0
       <DealingStartTransitionTime>k__BackingField: 0
       <DealingEndTransitionTime>k__BackingField: 0

@@ -45,7 +45,8 @@ namespace Character.Scripts.States.GroundState
             if (StateMachine.MovementDirection == Vector2.zero) return;
             
             base.OnMoveCanceled(context);
-            StateMachine.ChangeState(StateMachine.IdleState);
+            if (StateMachine.CurrentState is UnitCrouchWalkState) StateMachine.ChangeState(StateMachine.CrouchState);
+            else StateMachine.ChangeState(StateMachine.IdleState);
         }
 
         protected override void OnJumpStarted(InputAction.CallbackContext context)
@@ -56,7 +57,7 @@ namespace Character.Scripts.States.GroundState
 
         private void OnAttack()
         {
-            // StateMachine.ChangeState(StateMachine.ComboAttackState);
+            StateMachine.ChangeState(StateMachine.ComboAttackState);
         }
     }
 }

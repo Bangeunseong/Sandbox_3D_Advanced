@@ -1,5 +1,6 @@
 ﻿using System;
 using Character.Scripts.Data;
+using Character.Scripts.States;
 using Manager.Global;
 using UnityEngine;
 using Utils;
@@ -21,6 +22,9 @@ namespace Character.Scripts
         [field: SerializeField] public UnitController UnitController { get; private set; }
         [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
+        // Fields
+        [field: SerializeField] private UnitStateMachine stateMachine;
+        
         private void Awake()
         {
             if (!Animator) Animator = gameObject.GetComponentInChildren_Helper<Animator>();
@@ -28,7 +32,9 @@ namespace Character.Scripts
             if (!UnitCondition) UnitCondition = gameObject.GetComponent_Helper<UnitCondition>();
             if (!UnitController) UnitController = gameObject.GetComponent_Helper<UnitController>();
             if (!ForceReceiver) ForceReceiver = gameObject.GetComponent_Helper<ForceReceiver>();
+            
             AnimationData.Initialize();
+            
         }
 
         private void Reset()
@@ -44,7 +50,29 @@ namespace Character.Scripts
 
         private void Start()
         {
+            stateMachine = new UnitStateMachine(this);
+            
             Uuid = GameManager.Instance.SaveData != null ? GameManager.Instance.SaveData.Uuid : Guid.NewGuid().ToString();
+            Cursor.lockState = CursorLockMode.Locked;
+            stateMachine.ChangeState(stateMachine.IdleState);
+            UnitCondition.OnDeath += OnDeath;
+        }
+        
+        private void FixedUpdate()
+        {
+            stateMachine.PhysicsUpdate();
+        }
+
+        private void Update()
+        {
+            stateMachine.HandleInput();
+            stateMachine.Update();
+        }
+
+        private void OnDeath()
+        {
+            Animator.SetTrigger(AnimationData.DeathParameterHash);
+            enabled = false;
         }
     }
 }

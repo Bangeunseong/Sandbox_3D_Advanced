@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Character.Scripts.States.GroundState
 {
@@ -19,6 +20,18 @@ namespace Character.Scripts.States.GroundState
         {
             base.Exit();
             StopAnimation(StateMachine.Unit.AnimationData.RunParameterHash);
+        }
+
+        protected override void OnCrouchStarted(InputAction.CallbackContext context)
+        {
+            base.OnCrouchStarted(context);
+            StateMachine.ChangeState(StateMachine.CrouchState);
+        }
+
+        protected override void OnRunStarted(InputAction.CallbackContext context)
+        {
+            base.OnRunStarted(context);
+            StateMachine.ChangeState(StateMachine.WalkState);
         }
     }
 }

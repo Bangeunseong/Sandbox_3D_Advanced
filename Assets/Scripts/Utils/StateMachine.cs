@@ -11,7 +11,7 @@
     
     public abstract class StateMachine
     {
-        protected IState CurrentState;
+        public IState CurrentState { get; protected set; }
 
         public void ChangeState(IState newState)
         {

@@ -20,6 +20,8 @@ namespace Character.Scripts.States
         public Transform MainCameraTransform { get; set; }
         
         [field: SerializeField] public UnitIdleState IdleState { get; private set; }
+        [field: SerializeField] public UnitCrouchState CrouchState { get; private set; }
+        [field: SerializeField] public UnitCrouchWalkState CrouchWalkState { get; private set; }
         [field: SerializeField] public UnitWalkState WalkState { get; private set; }
         [field: SerializeField] public UnitRunState RunState { get; private set; }
         [field: SerializeField] public UnitJumpState JumpState { get; private set; }
@@ -36,6 +38,8 @@ namespace Character.Scripts.States
 
             // Registration of states
             IdleState = new UnitIdleState(this);
+            CrouchState = new UnitCrouchState(this);
+            CrouchWalkState = new UnitCrouchWalkState(this);
             WalkState = new UnitWalkState(this);
             RunState = new UnitRunState(this);
             JumpState = new UnitJumpState(this);

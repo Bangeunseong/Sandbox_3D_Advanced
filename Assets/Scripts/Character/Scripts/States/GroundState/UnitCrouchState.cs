@@ -1,39 +1,40 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Character.Scripts.States.GroundState
 {
-    public class UnitIdleState : UnitGroundState
+    public class UnitCrouchState : UnitGroundState
     {
-        public UnitIdleState(UnitStateMachine stateMachine) : base(stateMachine)
+        public UnitCrouchState(UnitStateMachine stateMachine) : base(stateMachine)
         {
         }
         
         public override void Enter()
         {
-            StateMachine.MovementSpeedModifier = 0f;
+            StateMachine.MovementSpeedModifier = UnitCondition.CrouchSpeedModifier;
             base.Enter();
-            StartAnimation(StateMachine.Unit.AnimationData.IdleParameterHash);
+            StartAnimation(StateMachine.Unit.AnimationData.CrouchParameterHash);
         }
 
         public override void Exit()
         {
             base.Exit();
-            StopAnimation(StateMachine.Unit.AnimationData.IdleParameterHash);
+            StopAnimation(StateMachine.Unit.AnimationData.CrouchParameterHash);
         }
 
         protected override void OnCrouchStarted(InputAction.CallbackContext context)
         {
             base.OnCrouchStarted(context);
-            StateMachine.ChangeState(StateMachine.CrouchState);
+            StateMachine.ChangeState(StateMachine.IdleState);
         }
-
+        
         public override void Update()
         {
             base.Update();
 
             if (StateMachine.MovementDirection == Vector2.zero) return;
-            StateMachine.ChangeState(StateMachine.WalkState);
+            StateMachine.ChangeState(StateMachine.CrouchWalkState);
         }
     }
 }

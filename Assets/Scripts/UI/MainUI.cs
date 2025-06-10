@@ -218,6 +218,11 @@ namespace UI
             }
         }
 
+        public void ToggleMainMenuUI()
+        {
+            mainMenuUI.SetActive(!mainMenuUI.activeInHierarchy);
+        }
+
         private int GetItemCount()
         {
             return ItemSlots.Count(slot => slot.ItemInfo != null && slot.ItemInfo.ItemName != "");
