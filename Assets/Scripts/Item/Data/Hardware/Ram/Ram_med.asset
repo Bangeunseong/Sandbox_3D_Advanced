@@ -19,7 +19,7 @@ MonoBehaviour:
       5600Mhz\uC758 \uD074\uB7ED\uC18D\uB3C4\uB97C \uAC00\uC9C4\uB2E4. \uBC29\uC5F4\uD310\uC740
       \uC5C6\uB2E4."
     <Price>k__BackingField: 100000
-    <Rarity>k__BackingField: 0
+    <Rarity>k__BackingField: 1
     <ItemType>k__BackingField: 0
     <Values>k__BackingField:
       _serializedList:
